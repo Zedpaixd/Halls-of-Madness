@@ -7,6 +7,7 @@ public class ChangeRoom : MonoBehaviour
     public GameObject original;
     public GameObject other;
     public bool onOriginal = true;
+    public bool activated = false;
 
     // <summary> 
     // Alternates the camera between 2 different predefined spots that ideally should be positioned in different spots but
@@ -28,11 +29,29 @@ public class ChangeRoom : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (activated && Input.GetKeyDown(KeyCode.F))
         {
             this.transform.position = !onOriginal ? original.transform.position : other.transform.position;
             applyFilters(onOriginal);
             onOriginal = !onOriginal;
         }
+    }
+
+    public void activate()
+    {
+        activated = true;
+        // turn on popup notification
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.transform.tag == "AlternateRealityTrigger")
+        {
+            activate();
+            Destroy(other.gameObject);
+        }
+
     }
 }
