@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Pickupable
   - AlternateRealityTrigger
+  - Pickupable
   layers:
   - Default
   - TransparentFX
@@ -14,7 +14,7 @@ TagManager:
   - Water
   - UI
   - GroundCheck
-  - 
+  - Pickupable
   - 
   - 
   - 

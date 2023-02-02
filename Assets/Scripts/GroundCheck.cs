@@ -29,4 +29,9 @@ public class GroundCheck : MonoBehaviour
     {
         onGround = true;
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        onGround = true;
+    }
 }
