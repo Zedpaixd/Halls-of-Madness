@@ -13,7 +13,8 @@ public class ChangeTarget : MonoBehaviour
     {
         if (change == true)
         {
-            follower.ChangeTarget(target);
+            //follower.ChangeTarget(target);
+            follower.target = target;
         }
     }
 }

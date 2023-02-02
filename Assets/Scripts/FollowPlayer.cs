@@ -51,7 +51,7 @@ public class FollowPlayer : MonoBehaviour
 
     public void MustNotFollow()
     {
-        mustFollow = true;
+        mustFollow = false;
     }
 
     public void ChangeMustFollow()
