@@ -6,8 +6,11 @@ public class ChangeRoom : MonoBehaviour
 {
     public GameObject original;
     public GameObject other;
+    private CharacterController cc;
     public bool onOriginal = true;
     public bool activated = false;
+    private float heightDiff;
+    public Fade fade;
 
     // <summary> 
     // Alternates the camera between 2 different predefined spots that ideally should be positioned in different spots but
@@ -15,25 +18,54 @@ public class ChangeRoom : MonoBehaviour
     // so it moves together with the original player object
     // </summary>
 
+
+    private void Start()
+    {
+        if (original && other)
+        {
+            heightDiff = Mathf.Abs(other.transform.position.y - original.transform.position.y);
+        }
+        cc = GetComponent<CharacterController>();
+    }
+
     void applyFilters(bool enabled)
     {
+        fade.StartFadeOut();
         if (enabled)
         {
-            Debug.Log("Apply filters");
+            //Debug.Log("Apply filters");
         }
         else
         {
-            Debug.Log("Remove filters");
+            //Debug.Log("Remove filters");
         }
     }
 
     private void Update()
     {
+
+        original.transform.position = !onOriginal ? this.transform.position - new Vector3(0, heightDiff, 0) : this.transform.position;
+        other.transform.position = !onOriginal ? this.transform.position : this.transform.position + new Vector3(0, heightDiff, 0);
+
+
         if (activated && Input.GetKeyDown(KeyCode.F))
         {
-            this.transform.position = !onOriginal ? original.transform.position : other.transform.position;
+            this.transform.position = onOriginal ? other.transform.position : original.transform.position;
+            cc.enabled = false;
+            /*if (!onOriginal)
+            {
+                transform.position = new Vector3(original.transform.position.x, original.transform.position.y, original.transform.position.z);
+                Debug.Log(original.transform.position);
+            }    
+            else
+            {
+                transform.position = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
+                Debug.Log(other.transform.position);
+            }*/
+            cc.enabled = true;
             applyFilters(onOriginal);
             onOriginal = !onOriginal;
+            //Debug.Log(heightDiff);
         }
     }
 
