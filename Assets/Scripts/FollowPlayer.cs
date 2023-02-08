@@ -41,7 +41,6 @@ public class FollowPlayer : MonoBehaviour
             if ((x < followRangeMax && z < followRangeMax)
                 && (x > followRangeMin || z > followRangeMin))
             {
-
                 lightVision.GetComponent<Light>().intensity = lightIntensity;
                 Follow();
                 Rotation();
