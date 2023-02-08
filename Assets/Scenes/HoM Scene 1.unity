@@ -4077,6 +4077,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24503e6c2a36f294e93d7a475971226e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &1250454649 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 6834315482329462046, guid: 984233390e57b874a91eaf4e2ae5c072, type: 3}
+  m_PrefabInstance: {fileID: 6834315483244353895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1282742209
 GameObject:
   m_ObjectHideFlags: 0
@@ -8180,6 +8185,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2122329668}
+    - target: {fileID: 6834315482329462047, guid: 984233390e57b874a91eaf4e2ae5c072, type: 3}
+      propertyPath: canvasGroup
+      value: 
+      objectReference: {fileID: 1250454649}
     - target: {fileID: 6834315482510370484, guid: 984233390e57b874a91eaf4e2ae5c072, type: 3}
       propertyPath: m_RootOrder
       value: 7
