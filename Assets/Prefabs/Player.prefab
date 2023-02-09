@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 5429352557343936726}
   - component: {fileID: 5429352557343936727}
   - component: {fileID: 5429352557343936724}
+  - component: {fileID: 5898566353172155990}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -202,6 +203,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0d3d8501-2ce1-48bf-a93a-b4a0376c69d2
     m_ActionName: Normal/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 47779a46-fb8c-4454-912f-c0040fc9d1e2
+    m_ActionName: Normal/Interact[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Normal
@@ -225,6 +230,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.2, z: 0.03}
+--- !u!136 &5898566353172155990
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429352557343936725}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2685169
+  m_Height: 2.1797512
+  m_Direction: 1
+  m_Center: {x: -0.007634163, y: 0.13950002, z: 0.03610909}
 --- !u!1 &5429352558257906527
 GameObject:
   m_ObjectHideFlags: 0

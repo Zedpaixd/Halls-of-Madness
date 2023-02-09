@@ -8,7 +8,7 @@ public class FollowPlayer : MonoBehaviour
 
     [Tooltip("If null, the target will be the player.")]
     public Transform target;
-    public float followRangeMin = 1f;
+    public float followRangeMin = 0f;
     public float followRangeMax = 10f;
     public float chaseSpeed = 5f;
     public float rotationSpeed = 5f;
