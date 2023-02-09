@@ -202,6 +202,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0d3d8501-2ce1-48bf-a93a-b4a0376c69d2
     m_ActionName: Normal/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 47779a46-fb8c-4454-912f-c0040fc9d1e2
+    m_ActionName: Normal/Interact[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Normal

@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     float xRot, yRot, moveSpeed, jumpHeight, jumpSpeed;
     public bool onGround;
     bool canJump;
+    int invertControls = 1;
     void Start() 
     {
         
@@ -33,9 +34,9 @@ public class Movement : MonoBehaviour
     {
         if (!onGround)
         {
-            velocity.y -= gravity * Time.deltaTime;
+            velocity.y -= gravity * Time.deltaTime * invertControls;
         }
-        else if (velocity.y < -0.1f)
+        else if (velocity.y * invertControls < -0.1f)
         {
             velocity.y = 0f;
         }
@@ -64,13 +65,13 @@ public class Movement : MonoBehaviour
     public void OnJump(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed || !canJump) { return; }
-        velocity.y = jumpSpeed;
+        velocity.y = jumpSpeed * invertControls;
     }
     void Rotate()
     {
-        yRot += mouseDelta.x * mouseSensitivity;
+        yRot += mouseDelta.x * mouseSensitivity * invertControls;
         yRot %= 360f;
-        xRot += mouseDelta.y * mouseSensitivity;
+        xRot += mouseDelta.y * mouseSensitivity * invertControls;
         xRot = Mathf.Clamp(xRot, -90f, 90f);
         transform.eulerAngles = new Vector3(0f, yRot, 0f);
         cam.transform.localEulerAngles = new Vector3(-xRot, 0f, 0f);
@@ -85,6 +86,12 @@ public class Movement : MonoBehaviour
     }
     void MoveCC()
     {
-        cc.Move(velocity * Time.deltaTime);
+        cc.Move(velocity * Time.deltaTime * invertControls);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("InvertControls")){
+            invertControls = -1;
+        }
     }
 }
