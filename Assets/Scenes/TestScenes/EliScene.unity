@@ -170,44 +170,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &637194931 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5913243205855874679, guid: 1d4be2f9e4176184a90d5e8a1d014463, type: 3}
-  m_PrefabInstance: {fileID: 1294342651}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &637194937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 637194931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22ab75648e838d64ea5122f90d311d53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followRangesMax:
-  - 10
-  - 15
-  - 20
-  - 25
-  - 30
-  - 35
-  chaseSpeeds:
-  - 5
-  - 5.5
-  - 6
-  - 7
-  - 8
-  - 9
-  currentState: 0
-  state0Max: 20
-  state1Max: 40
-  state2Max: 60
-  state3Max: 80
-  playerSanity: 0
-  attackRate: 2
 --- !u!1 &647996004 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f113adeb1f442b418232fa739b20c1b, type: 3}
@@ -431,10 +393,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6438986319127925965, guid: 1d4be2f9e4176184a90d5e8a1d014463, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6832354861695911506, guid: 1d4be2f9e4176184a90d5e8a1d014463, type: 3}
-      propertyPath: followRangeMin
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
