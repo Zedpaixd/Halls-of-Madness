@@ -11,11 +11,8 @@ public class FollowPlayer : MonoBehaviour
     public float followRangeMin = 1f;
     public float followRangeMax = 10f;
     public float chaseSpeed = 5f;
-    public float rotationSpeed = 5f;
+    public float rotationSpeed = 0.75f;
     public bool mustFollow = true;
-
-    public GameObject lightVision;
-    public float lightIntensity;
 
     private Quaternion _lookRotation;
     private Vector3 _direction;
@@ -26,12 +23,10 @@ public class FollowPlayer : MonoBehaviour
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
-        lightIntensity = lightVision.GetComponent<Light>().intensity;
-        lightVision.GetComponent<Light>().intensity = 0;
     }
 
-    void Update()
-    {
+    public void Move()
+    {  
         if (mustFollow)
         {
             // Target is in the range
@@ -41,14 +36,23 @@ public class FollowPlayer : MonoBehaviour
             if ((x < followRangeMax && z < followRangeMax)
                 && (x > followRangeMin || z > followRangeMin))
             {
-                lightVision.GetComponent<Light>().intensity = lightIntensity;
                 Follow();
                 Rotation();
             }
-            else if (x > followRangeMax || z > followRangeMax)
-            {
-                lightVision.GetComponent<Light>().intensity = 0;
-            }
+        }   
+    }
+
+    public bool CanMove()
+    {
+        float x = Mathf.Abs(target.position.x - this.transform.position.x);
+        float z = Mathf.Abs(target.position.z - this.transform.position.z);
+        if (x > followRangeMin || z > followRangeMin)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -57,7 +61,7 @@ public class FollowPlayer : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, transform.position.y, target.position.z), chaseSpeed * Time.deltaTime);
     }
 
-    private void Rotation()
+    public void Rotation()
     {
         _direction = (target.position - transform.position).normalized;
         _direction.y = 0;
@@ -69,24 +73,16 @@ public class FollowPlayer : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * rotationSpeed);
     }
 
-    public void ChangeTarget(Transform newTarget)
+    public void Rotation(float slowRotationSpeed)
     {
-        target = newTarget;
-    }
+        _direction = (target.position - transform.position).normalized;
+        _direction.y = 0;
 
-    public void MustFollow()
-    {
-        mustFollow = true;
-    }
+        //create the rotation we need to be in to look at the target
+        _lookRotation = Quaternion.LookRotation(_direction);
 
-    public void MustNotFollow()
-    {
-        mustFollow = false;
-    }
-
-    public void ChangeMustFollow()
-    {
-        mustFollow = !mustFollow;
+        //rotate us over time according to speed until we are in the required rotation
+        transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * slowRotationSpeed);
     }
 
 }
