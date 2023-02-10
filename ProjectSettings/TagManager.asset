@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AlternateRealityTrigger
   - Pickupable
+  - InvertControls
   - Entity
   layers:
   - Default
