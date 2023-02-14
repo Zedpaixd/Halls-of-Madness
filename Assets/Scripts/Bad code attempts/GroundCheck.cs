@@ -15,7 +15,7 @@ public class GroundCheck : MonoBehaviour
     {
         if (onGround != onGroundLastFrame)
         {
-            movementScript.onGround = onGround;
+            //movementScript.onGround = onGround;
         }
         onGroundLastFrame = onGround;
     }
@@ -25,13 +25,17 @@ public class GroundCheck : MonoBehaviour
         onGround = false;
     }
 
-    private void OnTriggerStay(Collider other)
+    /*private void OnTriggerStay(Collider other)
     {
         onGround = true;
-    }
+    }*/
 
     private void OnCollisionStay(Collision collision)
     {
-        onGround = true;
+        if (collision.transform.position.y > transform.position.y || collision.transform.position.y < transform.position.y)
+        {
+            onGround = true;
+        }
+        //onGround = true;
     }
 }

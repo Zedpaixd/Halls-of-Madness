@@ -12,15 +12,15 @@ public class Fade : MonoBehaviour
 
     public Coroutine CurrentRoutine { private set; get; } = null;
 
-    [SerializeField] private CanvasGroup canvasGroup = null;
+    [SerializeField] private CanvasGroup canvasGroup;// = null;
     private float alpha = 0.0f;
 
     private float quickFadeDuration = 0.25f;
 
-    /*private void Awake()
+    private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-    }*/
+    }
 
     public void StartFadeIn()
     {

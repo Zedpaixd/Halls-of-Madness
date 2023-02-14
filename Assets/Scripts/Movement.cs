@@ -5,24 +5,28 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    [Min(0.1f)] public float mouseSensitivity, baseMoveSpeed, baseJumpHeight, gravity;
+    [Min(0.1f)] public float mouseSensitivity, moveSpeed, jumpHeight, gravity;
     Transform cam;
     CharacterController cc;
     Vector2 mouseDelta, inputDir, mousePos, mousePosLastFrame;
     Vector3 velocity, moveDir;
-    float xRot, yRot, moveSpeed, jumpHeight, jumpSpeed;
-    public bool onGround;
+    float xRot, yRot, jumpSpeed;
+    [SerializeField] private bool onGround;
     bool canJump;
     int invertControls = 1;
+    [SerializeField] private LayerMask transitionZone;
     void Start() 
     {
-        
         Cursor.lockState = CursorLockMode.Locked;
         cam = transform.GetChild(0);
         cc = GetComponent<CharacterController>();
     }
+
     void Update()
     {
+        onGround = Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0), Vector3.down, 0.045f,transitionZone) ? true : false;
+        Debug.Log(Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0), Vector3.down, 0.045f));
+
         Forces();
         MouseDelta();
         Initial();
@@ -30,43 +34,48 @@ public class Movement : MonoBehaviour
         Directional();
         MoveCC();
     }
+
     void Forces()
     {
         if (!onGround)
         {
             velocity.y -= gravity * Time.deltaTime * invertControls;
         }
-        else if (velocity.y * invertControls < -0.1f)
+        else if (velocity.y * invertControls < -0.01f)
         {
             velocity.y = 0f;
         }
     }
+
     void Initial()
     {
-        moveSpeed = baseMoveSpeed;
-        jumpHeight = baseJumpHeight;
         jumpSpeed = Mathf.Sqrt(jumpHeight * gravity * 2f);
         canJump = onGround;
     }
+
     //public void OnLook(InputAction.CallbackContext ctx)
     //{
     //    mouseDelta = ctx.ReadValue<Vector2>();
     //}
+   
     void MouseDelta()
     {
         mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         //mouseDelta = mousePos - mousePosLastFrame;
         //mousePosLastFrame = mousePos;
     }
+   
     public void OnMove(InputAction.CallbackContext ctx)
     {
         inputDir = ctx.ReadValue<Vector2>();
     }
+   
     public void OnJump(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed || !canJump) { return; }
         velocity.y = jumpSpeed * invertControls;
     }
+  
     void Rotate()
     {
         yRot += mouseDelta.x * mouseSensitivity * invertControls;
@@ -84,10 +93,21 @@ public class Movement : MonoBehaviour
         velocity.x = moveDir.x * moveSpeed;
         velocity.z = moveDir.z * moveSpeed;
     }
+  
     void MoveCC()
     {
         cc.Move(velocity * Time.deltaTime * invertControls);
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.transform.tag == "Pickupable")
+        {
+            canJump = true;
+            onGround = true;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("InvertControls")){

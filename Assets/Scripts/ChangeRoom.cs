@@ -30,6 +30,7 @@ public class ChangeRoom : MonoBehaviour
 
     void applyFilters(bool enabled)
     {
+        fade.StartFadeIn();
         fade.StartFadeOut();
         if (enabled)
         {
@@ -52,16 +53,7 @@ public class ChangeRoom : MonoBehaviour
         {
             this.transform.position = onOriginal ? other.transform.position : original.transform.position;
             cc.enabled = false;
-            /*if (!onOriginal)
-            {
-                transform.position = new Vector3(original.transform.position.x, original.transform.position.y, original.transform.position.z);
-                Debug.Log(original.transform.position);
-            }    
-            else
-            {
-                transform.position = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
-                Debug.Log(other.transform.position);
-            }*/
+
             cc.enabled = true;
             applyFilters(onOriginal);
             onOriginal = !onOriginal;

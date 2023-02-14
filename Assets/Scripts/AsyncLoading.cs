@@ -32,7 +32,7 @@ public class AsyncLoading : MonoBehaviour
         fade.StartFadeOut();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
 
         //Debug.Log(playerCoords.playerTransform);
