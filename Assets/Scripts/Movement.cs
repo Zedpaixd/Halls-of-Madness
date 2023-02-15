@@ -24,8 +24,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        onGround = Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0), Vector3.down, 0.045f,transitionZone) ? true : false;
-        Debug.Log(Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0), Vector3.down, 0.045f));
+        onGround = Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0), Vector3.down, 0.045f,transitionZone);
 
         Forces();
         MouseDelta();
@@ -52,17 +51,10 @@ public class Movement : MonoBehaviour
         jumpSpeed = Mathf.Sqrt(jumpHeight * gravity * 2f);
         canJump = onGround;
     }
-
-    //public void OnLook(InputAction.CallbackContext ctx)
-    //{
-    //    mouseDelta = ctx.ReadValue<Vector2>();
-    //}
    
     void MouseDelta()
     {
         mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        //mouseDelta = mousePos - mousePosLastFrame;
-        //mousePosLastFrame = mousePos;
     }
    
     public void OnMove(InputAction.CallbackContext ctx)
@@ -89,14 +81,13 @@ public class Movement : MonoBehaviour
     void Directional()
     {
         moveDir = Vector3.Cross(transform.right, Vector3.up) * inputDir.y + transform.right * inputDir.x;
-
-        velocity.x = moveDir.x * moveSpeed;
-        velocity.z = moveDir.z * moveSpeed;
+        velocity.x = moveDir.x * moveSpeed * invertControls;
+        velocity.z = moveDir.z * moveSpeed * invertControls;
     }
   
     void MoveCC()
     {
-        cc.Move(velocity * Time.deltaTime * invertControls);
+        cc.Move(velocity * Time.deltaTime);
     }
 
     private void OnCollisionStay(Collision collision)

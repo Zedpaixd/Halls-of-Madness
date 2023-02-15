@@ -7,10 +7,11 @@ public class ChangeRoom : MonoBehaviour
     public GameObject original;
     public GameObject other;
     private CharacterController cc;
-    public bool onOriginal = true;
-    public bool activated = false;
+    public bool sightActive;
+    public bool abilityGotten = false;
     private float heightDiff;
     public Fade fade;
+    GameObject eyeClosed, eyeOpen, eyeGlow, eyeKey;
 
     // <summary> 
     // Alternates the camera between 2 different predefined spots that ideally should be positioned in different spots but
@@ -26,6 +27,11 @@ public class ChangeRoom : MonoBehaviour
             heightDiff = Mathf.Abs(other.transform.position.y - original.transform.position.y);
         }
         cc = GetComponent<CharacterController>();
+        Transform eye = GameObject.Find("Canvas").transform.GetChild(0);
+        eyeClosed = eye.GetChild(0).gameObject;
+        eyeOpen = eye.GetChild(1).gameObject;
+        eyeGlow = eye.GetChild(2).gameObject;
+        eyeKey = eye.GetChild(3).gameObject;
     }
 
     void applyFilters(bool enabled)
@@ -45,37 +51,41 @@ public class ChangeRoom : MonoBehaviour
     private void Update()
     {
 
-        original.transform.position = !onOriginal ? this.transform.position - new Vector3(0, heightDiff, 0) : this.transform.position;
-        other.transform.position = !onOriginal ? this.transform.position : this.transform.position + new Vector3(0, heightDiff, 0);
+        original.transform.position = sightActive ? this.transform.position - new Vector3(0, heightDiff, 0) : this.transform.position;
+        other.transform.position = sightActive ? this.transform.position : this.transform.position + new Vector3(0, heightDiff, 0);
 
 
-        if (activated && Input.GetKeyDown(KeyCode.F))
+        if (abilityGotten && Input.GetKeyDown(KeyCode.F))
         {
-            this.transform.position = onOriginal ? other.transform.position : original.transform.position;
+            this.transform.position = !sightActive ? other.transform.position : original.transform.position;
             cc.enabled = false;
 
             cc.enabled = true;
-            applyFilters(onOriginal);
-            onOriginal = !onOriginal;
-            //Debug.Log(heightDiff);
+            applyFilters(!sightActive);
+            sightActive = !sightActive;
+
+            print(sightActive);
+            eyeClosed.SetActive(!sightActive);
+            eyeOpen.SetActive(sightActive);
+            eyeGlow.SetActive(sightActive);
         }
     }
 
     public void activate()
     {
-        activated = true;
-        // turn on popup notification
+        abilityGotten = true;
+        print("Alternate Sight Ability Gained");
+        eyeClosed.SetActive(true);
+        eyeKey.SetActive(true);
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.transform.tag == "AlternateRealityTrigger")
         {
             activate();
             Destroy(other.gameObject);
         }
-
     }
 }
