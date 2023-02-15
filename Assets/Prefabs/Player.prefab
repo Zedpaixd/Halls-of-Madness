@@ -211,7 +211,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 0
-  m_Radius: 0.2685169
+  m_Radius: 0.27
   m_Height: 2.1797512
   m_Direction: 1
   m_Center: {x: -0.007634163, y: 0.13950002, z: 0.03610909}
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   original: {fileID: 0}
   other: {fileID: 0}
-  abilityGotten: 0
+  abilityGotten: 1
   sightActive: 0
   fade: {fileID: 0}
 --- !u!1 &5429352558257906527

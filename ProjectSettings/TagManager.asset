@@ -8,6 +8,8 @@ TagManager:
   - InvertControls
   - Entity
   - AlternateSightObject
+  - AlternateRealityTrigger
+  - ResetControls
   layers:
   - Default
   - TransparentFX
