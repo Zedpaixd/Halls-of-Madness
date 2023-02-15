@@ -3195,6 +3195,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &427245644 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6834315482329462047, guid: 984233390e57b874a91eaf4e2ae5c072, type: 3}
+  m_PrefabInstance: {fileID: 949074967}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24503e6c2a36f294e93d7a475971226e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &434456092
 GameObject:
   m_ObjectHideFlags: 0
@@ -15782,6 +15793,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4375933780555438161, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 427245644}
+    - target: {fileID: 4375933780555438161, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
+      propertyPath: other
+      value: 
+      objectReference: {fileID: 2065478832}
+    - target: {fileID: 4375933780555438161, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
+      propertyPath: original
+      value: 
+      objectReference: {fileID: 471680631}
     - target: {fileID: 5429352557343936723, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -15828,7 +15851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5429352557343936725, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
       propertyPath: m_Name
-      value: Player (1)
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
