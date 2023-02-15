@@ -6,15 +6,6 @@
             "id": "9a6d9835-a1aa-4930-85d2-6bebce27bfa8",
             "actions": [
                 {
-                    "name": "Look",
-                    "type": "PassThrough",
-                    "id": "87cdef7b-02df-45ab-ae5e-bba30cc573a5",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Move",
                     "type": "PassThrough",
                     "id": "03793f3a-7742-47b0-87ca-6dd7eb7a7358",
@@ -33,9 +24,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "AlternateSight",
                     "type": "Button",
                     "id": "47779a46-fb8c-4454-912f-c0040fc9d1e2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "09acdb33-faf4-426d-8d35-dfda32ee3927",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -43,17 +43,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "ef0e195b-d296-44fe-8273-7f7d4de13503",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "WASD",
                     "id": "7e5bd76a-1bb7-49d4-a009-5080ce633bf2",
@@ -127,7 +116,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Interact",
+                    "action": "AlternateSight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d22ddba-2605-4da9-a00b-7642569f0ff7",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

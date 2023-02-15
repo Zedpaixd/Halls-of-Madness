@@ -38,9 +38,9 @@ public class Movement : MonoBehaviour
     {
         if (!onGround)
         {
-            velocity.y -= gravity * Time.deltaTime * invertControls;
+            velocity.y -= gravity * Time.deltaTime;
         }
-        else if (velocity.y * invertControls < -0.01f)
+        else if (velocity.y < -0.01f)
         {
             velocity.y = 0f;
         }
@@ -65,7 +65,7 @@ public class Movement : MonoBehaviour
     public void OnJump(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed || !canJump) { return; }
-        velocity.y = jumpSpeed * invertControls;
+        velocity.y = jumpSpeed;
     }
   
     void Rotate()
@@ -103,6 +103,10 @@ public class Movement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("InvertControls")){
             invertControls = -1;
+        }
+        if (other.gameObject.CompareTag("ResetControls"))
+        {
+            invertControls = 1;
         }
     }
 }

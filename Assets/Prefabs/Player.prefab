@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 5429352557343936725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.84, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5429352558257906526}
@@ -82,8 +82,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 3
-  moveSpeed: 0
-  jumpHeight: 0
+  moveSpeed: 6
+  jumpHeight: 1.5
   gravity: 25
   onGround: 0
   transitionZone:
@@ -118,22 +118,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5429352557343936726}
         m_TargetAssemblyTypeName: Movement, Assembly-CSharp
-        m_MethodName: OnLook
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 87cdef7b-02df-45ab-ae5e-bba30cc573a5
-    m_ActionName: Normal/Look[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5429352557343936726}
-        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -163,10 +147,38 @@ MonoBehaviour:
     m_ActionId: 0d3d8501-2ce1-48bf-a93a-b4a0376c69d2
     m_ActionName: Normal/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4375933780555438161}
+        m_TargetAssemblyTypeName: AlternateSight, Assembly-CSharp
+        m_MethodName: OnAlternateSightPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 47779a46-fb8c-4454-912f-c0040fc9d1e2
-    m_ActionName: Normal/Interact[/Keyboard/f]
-  m_NeverAutoSwitchControlSchemes: 0
+    m_ActionName: Normal/AlternateSight[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 09acdb33-faf4-426d-8d35-dfda32ee3927
+    m_ActionName: Normal/Pause[/Keyboard/escape]
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Normal
   m_SplitScreenIndex: -1
@@ -217,8 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   original: {fileID: 0}
   other: {fileID: 0}
-  onOriginal: 1
-  activated: 1
+  abilityGotten: 0
+  sightActive: 0
   fade: {fileID: 0}
 --- !u!1 &5429352558257906527
 GameObject:
@@ -286,7 +298,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
