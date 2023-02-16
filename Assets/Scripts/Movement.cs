@@ -12,10 +12,10 @@ public class Movement : MonoBehaviour
     Vector2 mouseDelta, inputDir, mousePos, mousePosLastFrame;
     Vector3 velocity, moveDir;
     float xRot, yRot, jumpSpeed;
-    [SerializeField] private bool onGround;
+    [SerializeField] bool onGround;
     bool canJump;
     int invertControls = 1;
-    [SerializeField] private LayerMask groundCheckLayerMask;
+    [SerializeField] LayerMask groundCheckLayerMask;
     float raycastOriginHeightMinus;
     void Start() 
     {
@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour
    
     void MouseDelta()
     {
-        mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        mouseDelta = PauseGame.paused ? Vector2.zero : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
     }
    
     public void OnMove(InputAction.CallbackContext ctx)
@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour
    
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed || !canJump) { return; }
+        if (!(ctx.performed && canJump) || PauseGame.paused) { return; }
         velocity.y = jumpSpeed;
     }
   
