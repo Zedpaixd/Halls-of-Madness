@@ -10,6 +10,7 @@ TagManager:
   - AlternateSightObject
   - AlternateRealityTrigger
   - ResetControls
+  - FloatingTrigger
   layers:
   - Default
   - TransparentFX
