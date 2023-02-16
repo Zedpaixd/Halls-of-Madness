@@ -6,26 +6,27 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [Min(0.1f)] public float mouseSensitivity, moveSpeed, jumpHeight, gravity;
+    [Min(0f)] public float groundCheckStartHeight, groundCheckDistance;
     Transform cam;
     CharacterController cc;
     Vector2 mouseDelta, inputDir, mousePos, mousePosLastFrame;
     Vector3 velocity, moveDir;
     float xRot, yRot, jumpSpeed;
-    [SerializeField] private bool onGround;
+    [SerializeField] bool onGround;
     bool canJump;
     int invertControls = 1;
-    [SerializeField] private LayerMask transitionZone;
+    [SerializeField] LayerMask groundCheckLayerMask;
+    float raycastOriginHeightMinus;
     void Start() 
     {
         Cursor.lockState = CursorLockMode.Locked;
         cam = transform.GetChild(0);
         cc = GetComponent<CharacterController>();
+        raycastOriginHeightMinus = transform.localScale.y - groundCheckStartHeight;
     }
 
     void Update()
     {
-        onGround = Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0), Vector3.down, 0.045f,transitionZone);
-
         Forces();
         MouseDelta();
         Initial();
@@ -34,6 +35,10 @@ public class Movement : MonoBehaviour
         MoveCC();
     }
 
+    void FixedUpdate()
+    {
+        onGround = Physics.Raycast(transform.position + Vector3.down * raycastOriginHeightMinus, Vector3.down, groundCheckDistance, groundCheckLayerMask);
+    }
     void Forces()
     {
         if (!onGround)
@@ -54,7 +59,7 @@ public class Movement : MonoBehaviour
    
     void MouseDelta()
     {
-        mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        mouseDelta = PauseGame.paused ? Vector2.zero : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
     }
    
     public void OnMove(InputAction.CallbackContext ctx)
@@ -64,7 +69,7 @@ public class Movement : MonoBehaviour
    
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed || !canJump) { return; }
+        if (!(ctx.performed && canJump) || PauseGame.paused) { return; }
         velocity.y = jumpSpeed;
     }
   

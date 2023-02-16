@@ -22,7 +22,7 @@ TagManager:
   - Pickupable
   - NoCollision
   - TransitionZone
-  - 
+  - Trigger
   - 
   - 
   - 
