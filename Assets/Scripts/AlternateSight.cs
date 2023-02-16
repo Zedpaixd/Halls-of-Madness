@@ -60,7 +60,7 @@ public class AlternateSight : MonoBehaviour
 
     public void OnAlternateSightPressed(InputAction.CallbackContext ctx)
     {
-        if (!(abilityGotten && ctx.performed)) { return; }
+        if (!(abilityGotten && ctx.performed) || PauseGame.paused) { return; }
         transform.position = sightActive ? original.transform.position : other.transform.position;
         cc.enabled = false;
         cc.enabled = true;
