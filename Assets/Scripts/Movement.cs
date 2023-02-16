@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [Min(0.1f)] public float mouseSensitivity, moveSpeed, jumpHeight, gravity;
+    [Min(0f)] public float groundCheckStartHeight, groundCheckDistance;
     Transform cam;
     CharacterController cc;
     Vector2 mouseDelta, inputDir, mousePos, mousePosLastFrame;
@@ -14,18 +15,18 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool onGround;
     bool canJump;
     int invertControls = 1;
-    [SerializeField] private LayerMask transitionZone;
+    [SerializeField] private LayerMask groundCheckLayerMask;
+    float raycastOriginHeightMinus;
     void Start() 
     {
         Cursor.lockState = CursorLockMode.Locked;
         cam = transform.GetChild(0);
         cc = GetComponent<CharacterController>();
+        raycastOriginHeightMinus = transform.localScale.y - groundCheckStartHeight;
     }
 
     void Update()
     {
-        onGround = Physics.Raycast(transform.position + new Vector3(0, -0.8f, 0), Vector3.down, 0.045f,transitionZone);
-
         Forces();
         MouseDelta();
         Initial();
@@ -34,6 +35,10 @@ public class Movement : MonoBehaviour
         MoveCC();
     }
 
+    void FixedUpdate()
+    {
+        onGround = Physics.Raycast(transform.position + Vector3.down * raycastOriginHeightMinus, Vector3.down, groundCheckDistance, groundCheckLayerMask);
+    }
     void Forces()
     {
         if (!onGround)

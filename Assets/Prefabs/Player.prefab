@@ -85,10 +85,12 @@ MonoBehaviour:
   moveSpeed: 6
   jumpHeight: 1.5
   gravity: 25
+  groundCheckStartHeight: 0.05
+  groundCheckDistance: 0.1
   onGround: 0
-  transitionZone:
+  groundCheckLayerMask:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 251
 --- !u!114 &5429352557343936727
 MonoBehaviour:
   m_ObjectHideFlags: 0
