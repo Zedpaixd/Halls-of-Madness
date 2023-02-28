@@ -53,6 +53,9 @@ public class PickUp : MonoBehaviour
         if (childS != null && childS.collidedWithPlayer == false)
             if (Vector3.Distance(heldObject.transform.position, hand.position) > 0.1f)  // if object is not in vicinity, move it there
             {
+                if (!this.GetComponentInParent<Movement>().onGround && childS.CompareTag("Pickupable")) {
+                    return;     // avoid the infinite jump on pickupable objects
+                }
                 Vector3 moveDir = (hand.position - heldObject.transform.position);
                 heldObjectRB.AddForce(moveDir * pickupForce);
             }
@@ -69,7 +72,7 @@ public class PickUp : MonoBehaviour
 
             heldObjectRB.transform.parent = hand;
 
-            if (pickedObject.transform.tag == "SpPickupable")
+            if (pickedObject.transform.tag == "Pickupable" || pickedObject.transform.tag == "SpPickupable")
             {
                 pickedObject.AddComponent<HeldItem>();
             }
