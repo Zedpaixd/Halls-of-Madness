@@ -11,6 +11,7 @@ TagManager:
   - AlternateRealityTrigger
   - ResetControls
   - FloatingTrigger
+  - SpPickupable
   layers:
   - Default
   - TransparentFX

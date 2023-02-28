@@ -95,7 +95,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5429352557343936725}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.27
   m_Height: 2.1797512
   m_Direction: 1
@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 5429352558257906520}
   - component: {fileID: 5429352558257906521}
   - component: {fileID: 342940416257059870}
+  - component: {fileID: 93193661224255453}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -241,6 +242,20 @@ MonoBehaviour:
   pickupForce: 200
   pickupRange: 5
   LayerMask: 7
+--- !u!114 &93193661224255453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429352558257906527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eed1d9cbe64423499f1fefc0ce50417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Resolution: 1
+  DefaultSpotCookie: {fileID: 2800000, guid: 5157bf6d690b6df458f6c0ce0c06d329, type: 3}
 --- !u!1001 &5429352558464853401
 PrefabInstance:
   m_ObjectHideFlags: 0

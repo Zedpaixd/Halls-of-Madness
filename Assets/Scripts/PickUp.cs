@@ -30,7 +30,7 @@ public class PickUp : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange))  // "out hit" acts like a reference
                 {
-                    if (hit.transform.tag == "Pickupable")
+                    if (hit.transform.tag == "Pickupable" || hit.transform.tag == "SpPickupable")
                         pickUp(hit.transform.gameObject);
                 }
                     
@@ -68,7 +68,11 @@ public class PickUp : MonoBehaviour
             heldObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
 
             heldObjectRB.transform.parent = hand;
-            pickedObject.AddComponent<HeldItem>();
+
+            if (pickedObject.transform.tag == "SpPickupable")
+            {
+                pickedObject.AddComponent<HeldItem>();
+            }
             heldObject = pickedObject;
 
         }

@@ -95,9 +95,17 @@ public class Movement : MonoBehaviour
         cc.Move(velocity * Time.deltaTime);
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Pickupable")
+        {
+            canJump = true;
+            onGround = true;
+        }
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.transform.tag == "SpPickupable")
         {
             canJump = true;
             onGround = true;
