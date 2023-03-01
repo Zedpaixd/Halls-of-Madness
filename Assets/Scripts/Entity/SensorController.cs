@@ -26,7 +26,7 @@ public class SensorController : MonoBehaviour
     #endregion
 
     [Header("TEMPORARY INPUT LISTENER")]
-    public float playerSpeed = 0.1f;
+    public float playerSpeed = 1f;
 
     // Start is called before the first frame update
     void Start()

@@ -30,7 +30,7 @@ public class PickUp : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickupRange))  // "out hit" acts like a reference
                 {
-                    if (hit.transform.tag == "Pickupable")
+                    if (hit.transform.tag == "Pickupable" || hit.transform.tag == "SpPickupable")
                         pickUp(hit.transform.gameObject);
                 }
                     
@@ -53,6 +53,9 @@ public class PickUp : MonoBehaviour
         if (childS != null && childS.collidedWithPlayer == false)
             if (Vector3.Distance(heldObject.transform.position, hand.position) > 0.1f)  // if object is not in vicinity, move it there
             {
+                if (!this.GetComponentInParent<Movement>().onGround && childS.CompareTag("Pickupable")) {
+                    return;     // avoid the infinite jump on pickupable objects
+                }
                 Vector3 moveDir = (hand.position - heldObject.transform.position);
                 heldObjectRB.AddForce(moveDir * pickupForce);
             }
@@ -68,7 +71,11 @@ public class PickUp : MonoBehaviour
             heldObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
 
             heldObjectRB.transform.parent = hand;
-            pickedObject.AddComponent<HeldItem>();
+
+            if (pickedObject.transform.tag == "Pickupable" || pickedObject.transform.tag == "SpPickupable")
+            {
+                pickedObject.AddComponent<HeldItem>();
+            }
             heldObject = pickedObject;
 
         }
