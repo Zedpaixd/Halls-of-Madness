@@ -13,22 +13,18 @@ public class PlayerSoundsController : MonoBehaviour
     private AudioClip landJumpClip;
 
     public bool isWalking = false;
-    public bool mustLand = false;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.loop = false;
         ChangeToStep();
     }
 
-    private void Update()
+    void Update()
     {
-        // Stop step audio if player stop walking
-        if (!isWalking && (audioSource.clip == stepClip && audioSource.isPlaying))
-        {
-            audioSource.Stop();
-        }
+        
     }
 
     public bool CanChangeToStep()
@@ -42,21 +38,18 @@ public class PlayerSoundsController : MonoBehaviour
     public void ChangeToStep()
     {
         audioSource.clip = stepClip;
-        audioSource.loop = true;
     }
     
     public void PlayStartJump()
     {
 
         audioSource.clip = startJumpClip;
-        audioSource.loop = false;
         audioSource.Play();
     }
 
     public void PlayLandJump()
     {
         audioSource.clip = landJumpClip;
-        audioSource.loop = false;
         audioSource.Play();
     }
 }

@@ -5,15 +5,17 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    [Min(0.1f)] public float mouseSensitivity, moveSpeed, jumpHeight, gravity;
-    [Min(0f)] public float groundCheckStartHeight, groundCheckDistance;
+    [Min(0.1f)] public float mouseSensitivity, moveSpeed, jumpHeight, gravity, stepDistance;
+    [Min(0f)] public float groundCheckStartHeight, groundCheckDistance, airAcceleration, bobUpAmplitude, bobSideAmplitude;
     Transform cam;
     CharacterController cc;
+    PlayerSoundsController soundController;
+    AudioSource audioSource;
     Vector2 mouseDelta, inputDir, mousePos, mousePosLastFrame;
-    Vector3 velocity, moveDir;
-    float xRot, yRot, jumpSpeed;
+    Vector3 velocity, moveDir, camOrigPos;
+    float xRot, yRot, jumpSpeed, cumulativeDistance, cumulativeDistance2;
     public bool onGround;
-    bool canJump;
+    bool canJump, jumped = false, jumping = false, moving = false, rightStep;
     int invertControls = 1;
     [SerializeField] LayerMask groundCheckLayerMask;
     float raycastOriginHeightMinus;
@@ -24,6 +26,10 @@ public class Movement : MonoBehaviour
         cam = transform.GetChild(0);
         cc = GetComponent<CharacterController>();
         raycastOriginHeightMinus = transform.localScale.y - groundCheckStartHeight;
+        soundController = GetComponent<PlayerSoundsController>();
+        audioSource = GetComponent<AudioSource>();
+        cumulativeDistance = stepDistance - 0.5f;
+        camOrigPos = cam.localPosition;
     }
 
     void Update()
@@ -33,14 +39,14 @@ public class Movement : MonoBehaviour
         Initial();
         Rotate();
         Directional();
+        Step();
         MoveCC();
     }
 
     void FixedUpdate()
     {
         onGround = Physics.Raycast(transform.position + Vector3.down * raycastOriginHeightMinus, Vector3.down, groundCheckDistance, groundCheckLayerMask);
-        LandAudio();
-        StepAudio();
+        
     }
     void Forces()
     {
@@ -58,6 +64,16 @@ public class Movement : MonoBehaviour
     {
         jumpSpeed = Mathf.Sqrt(jumpHeight * gravity * 2f);
         canJump = onGround;
+        if (jumped && !onGround)
+        {
+            jumped = false;
+            jumping = true;
+        }
+        else if (jumping && onGround)
+        {
+            jumping = false;
+            LandJump();
+        }
     }
    
     void MouseDelta()
@@ -68,15 +84,17 @@ public class Movement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext ctx)
     {
         inputDir = ctx.ReadValue<Vector2>();
+        moving = ctx.performed;
     }
    
     public void OnJump(InputAction.CallbackContext ctx)
     {
         if (!(ctx.performed && canJump) || PauseGame.paused) { return; }
         velocity.y = jumpSpeed;
-        StartJumpAudio();
+        soundController.PlayStartJump();
+        jumped = true;
     }
-  
+
     void Rotate()
     {
         yRot += mouseDelta.x * mouseSensitivity * invertControls;
@@ -84,16 +102,63 @@ public class Movement : MonoBehaviour
         xRot += mouseDelta.y * mouseSensitivity * invertControls;
         xRot = Mathf.Clamp(xRot, -90f, 90f);
         transform.eulerAngles = new Vector3(0f, yRot, 0f);
-        cam.transform.localEulerAngles = new Vector3(-xRot, 0f, 0f);
+        cam.localEulerAngles = new Vector3(-xRot, 0f, 0f);
     }
 
     void Directional()
     {
         moveDir = Vector3.Cross(transform.right, Vector3.up) * inputDir.y + transform.right * inputDir.x;
-        velocity.x = moveDir.x * moveSpeed * invertControls;
-        velocity.z = moveDir.z * moveSpeed * invertControls;
+        var move2 = new Vector2(moveDir.x, moveDir.z) * moveSpeed * invertControls;
+        if (onGround)
+        {
+            cumulativeDistance += move2.magnitude * Time.deltaTime;
+            velocity.x = move2.x;
+            velocity.z = move2.y;
+        }
+        else
+        {
+            var velocity2 = new Vector2(velocity.x, velocity.z);
+            if (inputDir.magnitude < 0.1f)
+            {
+                velocity2 -= velocity2 * Time.deltaTime * airAcceleration/1.5f;
+                velocity.x = velocity2.x;
+                velocity.z = velocity2.y;
+            }
+            else
+            {
+                velocity2 += move2 * Time.deltaTime * airAcceleration;
+                velocity2 = Vector2.ClampMagnitude(velocity2, moveSpeed);
+                velocity.x = velocity2.x;
+                velocity.z = velocity2.y;
+            }
+            
+        }
     }
-  
+
+    void Step()
+    {
+        //Head bobbing camera effect
+        cam.localPosition = camOrigPos + Vector3.up * bobUpAmplitude * (Mathf.Sin(Mathf.PI * cumulativeDistance / stepDistance) - 1f)
+            + Vector3.right * bobSideAmplitude * Mathf.Cos(Mathf.PI*2f*(cumulativeDistance2 / (stepDistance * 2f)));
+
+        //Step sound
+        if (cumulativeDistance >= stepDistance) 
+        {
+            cumulativeDistance = 0f;
+            soundController.ChangeToStep();
+            audioSource.Play();
+            rightStep = !rightStep;
+        }
+        cumulativeDistance2 = cumulativeDistance + (rightStep ? 0 : stepDistance);
+        print(cumulativeDistance);
+        print(cumulativeDistance2);
+    }
+
+    void LandJump()
+    {
+        soundController.PlayLandJump();
+    }
+
     void MoveCC()
     {
         cc.Move(velocity * Time.deltaTime);    
@@ -105,39 +170,24 @@ public class Movement : MonoBehaviour
         {
             if (onGround)
             {
-                if (!this.GetComponent<PlayerSoundsController>().isWalking)
+                if (!soundController.isWalking)
                 {
-                    if (this.GetComponent<PlayerSoundsController>().CanChangeToStep())
+                    if (soundController.CanChangeToStep())
                     {
-                        this.GetComponent<PlayerSoundsController>().ChangeToStep();
-                        this.GetComponent<AudioSource>().Play();
-                        this.GetComponent<PlayerSoundsController>().isWalking = true;
+                        soundController.ChangeToStep();
+                        audioSource.Play();
+                        soundController.isWalking = true;
                     }
                 }
             }
             else
             {
-                this.GetComponent<PlayerSoundsController>().isWalking = false;
+                soundController.isWalking = false;
             }
         }
         else
         {
-            this.GetComponent<PlayerSoundsController>().isWalking = false;
-        }
-    }
-
-    void StartJumpAudio()
-    {
-        this.GetComponent<PlayerSoundsController>().PlayStartJump();
-        this.GetComponent<PlayerSoundsController>().mustLand = true;
-    }
-
-    void LandAudio()
-    {
-        if (onGround && this.GetComponent<PlayerSoundsController>().mustLand)
-        {
-            this.GetComponent<PlayerSoundsController>().PlayLandJump();
-            this.GetComponent<PlayerSoundsController>().mustLand = false;
+            soundController.isWalking = false;
         }
     }
 
@@ -153,7 +203,6 @@ public class Movement : MonoBehaviour
     {
         if (collision.transform.tag == "Pickupable" || collision.transform.tag == "SpPickupable")
         {
-            this.GetComponent<PlayerSoundsController>().mustLand = false;
         }
         if (collision.transform.tag == "Pickupable")
         {
