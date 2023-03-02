@@ -123,7 +123,9 @@ MonoBehaviour:
   groundCheckDistance: 0.1
   airAcceleration: 3
   bobUpAmplitude: 0.11
-  bobSideAmplitude: 0.55
+  bobSideAmplitude: 0.03
+  landTime: 0.35
+  landingShakePosAmp: 0.25
   onGround: 0
   groundCheckLayerMask:
     serializedVersion: 2

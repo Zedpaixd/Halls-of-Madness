@@ -6,16 +6,17 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [Min(0.1f)] public float mouseSensitivity, moveSpeed, jumpHeight, gravity, stepDistance;
-    [Min(0f)] public float groundCheckStartHeight, groundCheckDistance, airAcceleration, bobUpAmplitude, bobSideAmplitude;
+    [Min(0f)] public float groundCheckStartHeight, groundCheckDistance, airAcceleration, 
+        bobUpAmplitude, bobSideAmplitude, landTime, landingShakePosAmp;
     Transform cam;
     CharacterController cc;
     PlayerSoundsController soundController;
     AudioSource audioSource;
     Vector2 mouseDelta, inputDir, mousePos, mousePosLastFrame;
     Vector3 velocity, moveDir, camOrigPos;
-    float xRot, yRot, jumpSpeed, cumulativeDistance, cumulativeDistance2;
+    float xRot, yRot, jumpSpeed, cumulativeDistance, stepPhase, landTimer;
     public bool onGround;
-    bool canJump, jumped = false, jumping = false, moving = false, rightStep;
+    bool canJump, jumped, jumping, moving, landing;
     int invertControls = 1;
     [SerializeField] LayerMask groundCheckLayerMask;
     float raycastOriginHeightMinus;
@@ -28,8 +29,8 @@ public class Movement : MonoBehaviour
         raycastOriginHeightMinus = transform.localScale.y - groundCheckStartHeight;
         soundController = GetComponent<PlayerSoundsController>();
         audioSource = GetComponent<AudioSource>();
-        cumulativeDistance = stepDistance - 0.5f;
         camOrigPos = cam.localPosition;
+        cumulativeDistance = stepDistance / 2f;
     }
 
     void Update()
@@ -40,6 +41,7 @@ public class Movement : MonoBehaviour
         Rotate();
         Directional();
         Step();
+        LandingAnimation();
         MoveCC();
     }
 
@@ -84,7 +86,7 @@ public class Movement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext ctx)
     {
         inputDir = ctx.ReadValue<Vector2>();
-        moving = ctx.performed;
+        moving = inputDir.magnitude > 0.1f;
     }
    
     public void OnJump(InputAction.CallbackContext ctx)
@@ -93,6 +95,10 @@ public class Movement : MonoBehaviour
         velocity.y = jumpSpeed;
         soundController.PlayStartJump();
         jumped = true;
+
+        cumulativeDistance = 0f;
+        stepPhase = stepDistance/2f;
+        cam.localPosition = camOrigPos;
     }
 
     void Rotate()
@@ -111,7 +117,9 @@ public class Movement : MonoBehaviour
         var move2 = new Vector2(moveDir.x, moveDir.z) * moveSpeed * invertControls;
         if (onGround)
         {
-            cumulativeDistance += move2.magnitude * Time.deltaTime;
+            var moveMagTime = move2.magnitude * Time.deltaTime;
+            cumulativeDistance += moveMagTime;
+            stepPhase += moveMagTime;
             velocity.x = move2.x;
             velocity.z = move2.y;
         }
@@ -138,57 +146,57 @@ public class Movement : MonoBehaviour
     void Step()
     {
         //Head bobbing camera effect
-        cam.localPosition = camOrigPos + Vector3.up * bobUpAmplitude * (Mathf.Sin(Mathf.PI * cumulativeDistance / stepDistance) - 1f)
-            + Vector3.right * bobSideAmplitude * Mathf.Cos(Mathf.PI*2f*(cumulativeDistance2 / (stepDistance * 2f)));
-
-        //Step sound
-        if (cumulativeDistance >= stepDistance) 
+        if (!landing && onGround)
         {
-            cumulativeDistance = 0f;
+            if (moving)
+            {
+                var camTargetPos = camOrigPos + Vector3.up * bobUpAmplitude * 
+                    (Mathf.Abs(Mathf.Cos(Mathf.PI * cumulativeDistance / stepDistance)) - 1f)
+                    + Vector3.right * bobSideAmplitude * Mathf.Cos(Mathf.PI * cumulativeDistance / stepDistance)
+                    ;
+                cam.localPosition = Vector3.Lerp(cam.localPosition, camTargetPos, 0.1f);
+            }
+            else
+            {
+                stepPhase = stepDistance/2f;
+                cumulativeDistance = 0f;
+                print("stopped moving");
+                cam.localPosition = Vector3.Lerp(cam.localPosition, camOrigPos, 0.02f);
+            }
+        }
+        
+        //Step sound
+        if (stepPhase >= stepDistance) 
+        {
+            stepPhase = 0f;
             soundController.ChangeToStep();
             audioSource.Play();
-            rightStep = !rightStep;
         }
-        cumulativeDistance2 = cumulativeDistance + (rightStep ? 0 : stepDistance);
-        print(cumulativeDistance);
-        print(cumulativeDistance2);
     }
 
     void LandJump()
     {
         soundController.PlayLandJump();
+        landing = true;
+        landTimer = landTime;
+    }
+
+    void LandingAnimation()
+    {
+        if (!landing) { return; }
+        landTimer -= Time.deltaTime;
+        if (landTimer <= 0f)
+        {
+            landing = false;
+            return;
+        }
+        cam.localPosition = camOrigPos + Vector3.down * landingShakePosAmp * Mathf.Sin(Mathf.PI * landTimer / landTime);
+        
     }
 
     void MoveCC()
     {
         cc.Move(velocity * Time.deltaTime);    
-    }
-
-    void StepAudio()
-    {
-        if (velocity.x != 0 && velocity.z != 0)
-        {
-            if (onGround)
-            {
-                if (!soundController.isWalking)
-                {
-                    if (soundController.CanChangeToStep())
-                    {
-                        soundController.ChangeToStep();
-                        audioSource.Play();
-                        soundController.isWalking = true;
-                    }
-                }
-            }
-            else
-            {
-                soundController.isWalking = false;
-            }
-        }
-        else
-        {
-            soundController.isWalking = false;
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
