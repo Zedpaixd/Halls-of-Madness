@@ -115,11 +115,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 3
-  moveSpeed: 6
+  moveSpeed: 5
   jumpHeight: 1.5
   gravity: 25
+  stepDistance: 3.5
   groundCheckStartHeight: 0.05
   groundCheckDistance: 0.1
+  airAcceleration: 3
+  bobUpAmplitude: 0.11
+  bobSideAmplitude: 0.03
+  landTime: 0.35
+  landingShakePosAmp: 0.25
   onGround: 0
   groundCheckLayerMask:
     serializedVersion: 2
@@ -253,7 +259,6 @@ MonoBehaviour:
   startJumpClip: {fileID: 8300000, guid: db2281b9de1863f409d62f9edf69c6cf, type: 3}
   landJumpClip: {fileID: 8300000, guid: 304f2bf2228cba94e91cd22803e54bcf, type: 3}
   isWalking: 0
-  mustLand: 0
 --- !u!1 &5429352558257906527
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +326,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2295
+    m_Bits: 247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
