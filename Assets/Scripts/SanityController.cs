@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class SanityController : MonoBehaviour
 {
+    #region definitions
     private Slider sSlider;
     [SerializeField] private Fade fade;
     public float sanityValue;
     private bool CR_running = false;
     [SerializeField] private float blinkMinTime;
     [SerializeField] private float blinkMaxTime;
+    #endregion
 
     void Start()
     {
@@ -19,7 +21,6 @@ public class SanityController : MonoBehaviour
         sanityValue = sSlider.value;
     }
 
-    
     void Update()
     {
         sanityValue = sanityValue > 1 ? 1 : sanityValue <= 0 ? 0.001f : sanityValue;
@@ -33,6 +34,8 @@ public class SanityController : MonoBehaviour
         sanityBehaviour();
     }
 
+    /* PUBLIC METHODS */
+
     public void instantlyChangeSanity(float destination)
     {
         sanityValue = destination;
@@ -44,6 +47,8 @@ public class SanityController : MonoBehaviour
         else if (amount > 0 && amount + sanityValue > 1) amount = 1.001f - sanityValue;
         StartCoroutine(ChangeSanity(amount, durationInSeconds));
     }
+
+    /* SANITY BEHAVIOUR */
 
     private void sanityBehaviour()
     {
@@ -77,35 +82,40 @@ public class SanityController : MonoBehaviour
         }
     }
 
-    private IEnumerator blink(float afterDelay)
-    {
-        CR_running = true;
+                /* BLINKING COROUTINE */
+                private IEnumerator blink(float afterDelay)
+                {
+                    CR_running = true;
 
-        yield return StartCoroutine(addDelay(afterDelay));
-        fade.QuickFadeIn();
-        fade.QuickFadeOut();
+                    yield return StartCoroutine(addDelay(afterDelay));
+                    fade.QuickFadeIn();
+                    fade.QuickFadeOut();
 
-        CR_running = false;
+                    CR_running = false;
 
-    }
+                }
 
-        
-    private IEnumerator addDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-    }
+
+    /* SANITY CHANGING COROUTINE */
 
     private IEnumerator ChangeSanity(float amount, float durationInSeconds)
     {
         float destination = sanityValue + amount;
         float originalVal = sanityValue;
-        
-        for (float elapsedTime = 0f; elapsedTime < durationInSeconds; elapsedTime += Time.deltaTime) 
+
+        for (float elapsedTime = 0f; elapsedTime < durationInSeconds; elapsedTime += Time.deltaTime)
         {
             sanityValue = Mathf.Lerp(originalVal, destination, elapsedTime / durationInSeconds);
             yield return null;
         }
         sanityValue = destination;
+    }
+
+    /* DELAY ADDER */
+
+    private IEnumerator addDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
     }
 
 }

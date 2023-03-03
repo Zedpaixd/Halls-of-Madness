@@ -160,7 +160,7 @@ public class Movement : MonoBehaviour
             {
                 stepPhase = stepDistance/2f;
                 cumulativeDistance = 0f;
-                print("stopped moving");
+                //print("stopped moving");
                 cam.localPosition = Vector3.Lerp(cam.localPosition, camOrigPos, 0.02f);
             }
         }
