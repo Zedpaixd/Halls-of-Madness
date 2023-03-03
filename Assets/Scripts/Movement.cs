@@ -5,18 +5,19 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    [Min(0.1f)] public float mouseSensitivity, moveSpeed, jumpHeight, gravity, stepDistance;
-    [Min(0f)] public float groundCheckStartHeight, groundCheckDistance, airAcceleration, 
+    [Min(0.1f)] public float mouseSensitivity, baseMoveSpeed, jumpHeight, gravity, stepDistance;
+    [Min(0f)] public float groundCheckStartHeight, groundCheckDistance, baseAirAcceleration, 
         bobUpAmplitude, bobSideAmplitude, landTime, landingShakePosAmp;
+    [Min(1f)] public float sprintMultiplier;
     Transform cam;
     CharacterController cc;
     PlayerSoundsController soundController;
     AudioSource audioSource;
     Vector2 mouseDelta, inputDir, mousePos, mousePosLastFrame;
     Vector3 velocity, moveDir, camOrigPos;
-    float xRot, yRot, jumpSpeed, cumulativeDistance, stepPhase, landTimer;
+    float xRot, yRot, jumpSpeed, moveSpeed, airAcceleration, cumulativeDistance, stepPhase, landTimer;
     public bool onGround;
-    bool canJump, jumped, jumping, moving, landing;
+    bool canJump, jumped, jumping, moving, landing, sprinting, sprintPressed;
     int invertControls = 1;
     [SerializeField] LayerMask groundCheckLayerMask;
     float raycastOriginHeightMinus;
@@ -48,7 +49,6 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         onGround = Physics.Raycast(transform.position + Vector3.down * raycastOriginHeightMinus, Vector3.down, groundCheckDistance, groundCheckLayerMask);
-        
     }
     void Forces()
     {
@@ -64,6 +64,14 @@ public class Movement : MonoBehaviour
 
     void Initial()
     {
+        //Move
+        moveSpeed = baseMoveSpeed * (sprinting ? sprintMultiplier : 1f);
+        if (onGround)
+        {
+            sprinting = sprintPressed;
+        }
+
+        //Jump
         jumpSpeed = Mathf.Sqrt(jumpHeight * gravity * 2f);
         canJump = onGround;
         if (jumped && !onGround)
@@ -76,6 +84,7 @@ public class Movement : MonoBehaviour
             jumping = false;
             LandJump();
         }
+        airAcceleration = baseAirAcceleration * (sprinting ? sprintMultiplier/2f : 1f);
     }
    
     void MouseDelta()
@@ -87,6 +96,11 @@ public class Movement : MonoBehaviour
     {
         inputDir = ctx.ReadValue<Vector2>();
         moving = inputDir.magnitude > 0.1f;
+    }
+
+    public void OnSprint(InputAction.CallbackContext ctx)
+    {
+        sprintPressed = ctx.performed;
     }
    
     public void OnJump(InputAction.CallbackContext ctx)
@@ -160,7 +174,6 @@ public class Movement : MonoBehaviour
             {
                 stepPhase = stepDistance/2f;
                 cumulativeDistance = 0f;
-                print("stopped moving");
                 cam.localPosition = Vector3.Lerp(cam.localPosition, camOrigPos, 0.02f);
             }
         }
