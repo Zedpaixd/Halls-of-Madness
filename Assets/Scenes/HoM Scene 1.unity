@@ -10229,7 +10229,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1472462408473127850, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: MainCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 1472462408473127862, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: m_Pivot.x
@@ -13562,6 +13562,18 @@ PrefabInstance:
       value: 0.91
       objectReference: {fileID: 0}
     - target: {fileID: 4012809628251553817, guid: 870abe8e92bb2ae4fa98e2692d489f51, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4575472
+      objectReference: {fileID: 0}
+    - target: {fileID: 4012809628251553817, guid: 870abe8e92bb2ae4fa98e2692d489f51, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4575472
+      objectReference: {fileID: 0}
+    - target: {fileID: 4012809628251553817, guid: 870abe8e92bb2ae4fa98e2692d489f51, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4012809628251553817, guid: 870abe8e92bb2ae4fa98e2692d489f51, type: 3}
       propertyPath: m_SpotAngle
       value: 41
       objectReference: {fileID: 0}
@@ -14439,11 +14451,35 @@ PrefabInstance:
       value: Input
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 0ba9b860a78814c408d14de864c6c970, type: 3}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: c473ef7f-71f2-4133-a649-db684e2166d0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: Normal/Sprint[/Keyboard/leftShift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
@@ -14463,15 +14499,35 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1899430454}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1801551483}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSprint
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseGame, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Movement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360575, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}

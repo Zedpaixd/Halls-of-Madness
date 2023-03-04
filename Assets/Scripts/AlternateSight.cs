@@ -31,7 +31,7 @@ public class AlternateSight : MonoBehaviour
             Debug.LogError("Original object or other object does not exist");
         }
         cc = GetComponent<CharacterController>();
-        eye = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        eye = GameObject.Find("MainCanvas").transform.GetChild(0).gameObject;
         var eyeTransform = eye.transform;
         eyeClosed = eyeTransform.GetChild(0).gameObject;
         eyeOpen = eyeTransform.GetChild(1).gameObject;

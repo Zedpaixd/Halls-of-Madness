@@ -1533,7 +1533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1472462408473127850, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: MainCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 1472462408473127862, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: m_Pivot.x
@@ -12623,6 +12623,10 @@ PrefabInstance:
     - target: {fileID: 277724652706017455, guid: 6ea7f2692869fd54297456e401ce3d94, type: 3}
       propertyPath: m_Name
       value: Fail Zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 277724653860825888, guid: 6ea7f2692869fd54297456e401ce3d94, type: 3}
+      propertyPath: m_Name
+      value: YouDiedCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ea7f2692869fd54297456e401ce3d94, type: 3}
