@@ -153,7 +153,6 @@ public class Movement : MonoBehaviour
                 velocity.x = velocity2.x;
                 velocity.z = velocity2.y;
             }
-            
         }
     }
 
