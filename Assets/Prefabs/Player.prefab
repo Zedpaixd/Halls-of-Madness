@@ -115,17 +115,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 3
-  moveSpeed: 5
+  baseMoveSpeed: 5
   jumpHeight: 1.5
   gravity: 25
-  stepDistance: 3.5
+  stepDistance: 3
   groundCheckStartHeight: 0.05
   groundCheckDistance: 0.1
-  airAcceleration: 3
-  bobUpAmplitude: 0.11
-  bobSideAmplitude: 0.03
+  baseAirAcceleration: 3
+  bobUpAmplitude: 0.15
+  bobSideAmplitude: 0.04
   landTime: 0.35
-  landingShakePosAmp: 0.25
+  landingShakePosAmp: 0.15
+  sprintMultiplier: 2
   onGround: 0
   groundCheckLayerMask:
     serializedVersion: 2
@@ -458,6 +459,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 43606389a2b176b48afd83193d083ecb, type: 3}
       propertyPath: m_Name
       value: PlayerModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 43606389a2b176b48afd83193d083ecb, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 43606389a2b176b48afd83193d083ecb, type: 3}
       propertyPath: m_IsActive
