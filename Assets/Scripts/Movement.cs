@@ -12,7 +12,6 @@ public class Movement : MonoBehaviour
     Transform cam;
     CharacterController cc;
     PlayerSoundsController soundController;
-    AudioSource audioSource;
     Vector2 mouseDelta, inputDir, mousePos, mousePosLastFrame;
     Vector3 velocity, moveDir, camOrigPos;
     float xRot, yRot, moveSpeed, jumpSpeed, airAcceleration, cumulativeDistance, stepPhase, landTimer;
@@ -29,7 +28,6 @@ public class Movement : MonoBehaviour
         cc = GetComponent<CharacterController>();
         raycastOriginHeightMinus = transform.localScale.y - groundCheckStartHeight;
         soundController = GetComponent<PlayerSoundsController>();
-        audioSource = GetComponent<AudioSource>();
         camOrigPos = cam.localPosition;
         cumulativeDistance = stepDistance / 2f;
     }
@@ -168,8 +166,7 @@ public class Movement : MonoBehaviour
             {
                 var camTargetPos = camOrigPos + Vector3.up * bobUpAmplitude * 
                     (Mathf.Abs(Mathf.Cos(Mathf.PI * cumulativeDistance / stepDistance)) - 1f)
-                    + Vector3.right * bobSideAmplitude * Mathf.Cos(Mathf.PI * cumulativeDistance / stepDistance)
-                    ;
+                    + Vector3.right * bobSideAmplitude * Mathf.Cos(Mathf.PI * cumulativeDistance / stepDistance);
                 cam.localPosition = Vector3.Lerp(cam.localPosition, camTargetPos, 0.1f);
             }
             else
@@ -185,8 +182,7 @@ public class Movement : MonoBehaviour
         if (stepPhase >= stepDistance) 
         {
             stepPhase = 0f;
-            soundController.ChangeToStep();
-            audioSource.Play();
+            soundController.PlayStep();
         }
     }
 

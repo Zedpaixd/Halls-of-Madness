@@ -19,14 +19,9 @@ public class PlayerSoundsController : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = false;
-        ChangeToStep();
+        audioSource.volume = Settings.sfxVolume*Settings.masterVolume;
+        PlayStep();
     }
-
-    void Update()
-    {
-        
-    }
-
     public bool CanChangeToStep()
     {
         if ((audioSource.isPlaying && !audioSource.loop) || (audioSource.clip == stepClip && audioSource.isPlaying))
@@ -35,9 +30,10 @@ public class PlayerSoundsController : MonoBehaviour
         }
         return true;
     }
-    public void ChangeToStep()
+    public void PlayStep()
     {
         audioSource.clip = stepClip;
+        audioSource.Play();
     }
     
     public void PlayStartJump()

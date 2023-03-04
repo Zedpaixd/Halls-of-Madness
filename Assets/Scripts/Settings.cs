@@ -1,0 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public static class Settings
+{
+    public static float masterVolume=1f, sfxVolume=0.5f, ambianceVolume=0.5f, brightness=0.5f;
+}
