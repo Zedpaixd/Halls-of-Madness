@@ -16,10 +16,12 @@ public class Movement : MonoBehaviour
     Vector3 velocity, moveDir, camOrigPos;
     float xRot, yRot, moveSpeed, jumpSpeed, airAcceleration, cumulativeDistance, stepPhase, landTimer;
     public bool onGround;
+    private bool canJumpForgiveness = false;
     bool canJump, jumped, jumping, moving, landing, sprintPressed, sprinting;
     int invertControls = 1;
     [SerializeField] LayerMask groundCheckLayerMask;
     float raycastOriginHeightMinus;
+    RaycastHit hit;
 
     void Start() 
     {
@@ -47,6 +49,11 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         onGround = Physics.Raycast(transform.position + Vector3.down * raycastOriginHeightMinus, Vector3.down, groundCheckDistance, groundCheckLayerMask);
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, raycastOriginHeightMinus * 1.2f))
+        {
+            if (hit.transform.tag.Equals("SpPickupable")) canJumpForgiveness = true;
+
+        }
         
     }
     void Forces()
@@ -110,10 +117,11 @@ public class Movement : MonoBehaviour
    
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (!(ctx.performed && canJump) || PauseGame.paused) { return; }
+        if (!(ctx.performed && (canJump || canJumpForgiveness)) || PauseGame.paused) { return; }
         velocity.y = jumpSpeed;
         soundController.PlayStartJump();
         jumped = true;
+        canJumpForgiveness = false;
 
         cumulativeDistance = 0f;
         stepPhase = stepDistance/2f;
