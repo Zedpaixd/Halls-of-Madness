@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
@@ -12,13 +13,16 @@ public class HealthController : MonoBehaviour
     [SerializeField] private float healthValue;
     private bool PHR_running = false, CR_running = false;
     [SerializeField] private bool passiveHealthRegen = true;
+    public CanvasGroup CG;
     private float destination, originalVal, duration;
+    private float alpha = 0.0f;
     #endregion
 
     void Start()
     {
         hSlider = GetComponent<Slider>();
         healthValue = hSlider.value;
+        CG = this.GetComponentInChildren<CanvasGroup>();
     }
 
     void Update()
@@ -29,6 +33,16 @@ public class HealthController : MonoBehaviour
         if (!PHR_running && passiveHealthRegen)
         {
             StartCoroutine(PassiveHealthRegen(1));
+        }
+
+        if (healthValue <= 0.01f)
+        {
+            StartCoroutine(Die());
+        }
+
+        if (CG.alpha > 0.97f)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -99,5 +113,19 @@ public class HealthController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
     }
-   
+
+
+    /* DEATH */
+    public IEnumerator Die()
+    {
+        float elapsedTime = 0.0f;
+
+        while (alpha <= 1.0f)
+        {
+            CG.alpha = elapsedTime / 1; /*1 second*/
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
 }

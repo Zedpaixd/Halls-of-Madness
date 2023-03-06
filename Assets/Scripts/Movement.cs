@@ -100,6 +100,11 @@ public class Movement : MonoBehaviour
         moving = inputDir.magnitude > 0.1f;
     }
 
+    public void Attacked()
+    {
+        // Oliver add a small knockback here
+    }
+
     public void OnSprint(InputAction.CallbackContext ctx)
     {
         sprintPressed = ctx.performed;

@@ -5,25 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class YouDied : MonoBehaviour
 {
-    public Fade fade;
-    public CanvasGroup CG;
-
-    private void Start()
-    {
-        CG = fade.GetComponent<CanvasGroup>();
-    }
-
-    private void Update()
-    {
-        if (CG.alpha >= 0.99f)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    [SerializeField] HealthController healthController;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {
-            fade.StartFadeIn();
+            StartCoroutine(healthController.Die());
         }
     }
 }
