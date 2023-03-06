@@ -12,6 +12,7 @@ TagManager:
   - ResetControls
   - FloatingTrigger
   - SpPickupable
+  - AttackLayer
   layers:
   - Default
   - TransparentFX

@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4375933780555438161}
   - component: {fileID: 746435255198129899}
   - component: {fileID: 6217435497953763401}
+  - component: {fileID: 82137438569232604}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -260,6 +261,19 @@ MonoBehaviour:
   startJumpClip: {fileID: 8300000, guid: db2281b9de1863f409d62f9edf69c6cf, type: 3}
   landJumpClip: {fileID: 8300000, guid: 304f2bf2228cba94e91cd22803e54bcf, type: 3}
   isWalking: 0
+--- !u!114 &82137438569232604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429352557343936725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2199a5cb5a207f44abfaadf18a09397e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthController: {fileID: 0}
 --- !u!1 &5429352558257906527
 GameObject:
   m_ObjectHideFlags: 0
