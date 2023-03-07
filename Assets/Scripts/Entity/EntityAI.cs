@@ -30,11 +30,14 @@ public class EntityAI : MonoBehaviour
     [SerializeField]
     private float rotationSpeed = 2f;
 
+    public EntitySoundController soundController;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         sensorController.viewRadius = viewRanges[currentState];
         followPlayer = this.GetComponent<FollowPlayer>();
+        soundController = this.GetComponent<EntitySoundController>();
     }
 
     // Update is called once per frame
@@ -82,6 +85,8 @@ public class EntityAI : MonoBehaviour
         isAlerted = true;
         sensorController.SwitchLightIntensity(true); 
         followPlayer.TargetPlayer();
+
+        soundController.PlayAttention();
     }
 
     private void DesactivateEntity()
@@ -89,6 +94,8 @@ public class EntityAI : MonoBehaviour
         isAlerted = false;
         sensorController.SwitchLightIntensity(false);
         followPlayer.BackToStart();
+        
+        soundController.attention = false;
     }
 
     /*  void SanityCheck()
