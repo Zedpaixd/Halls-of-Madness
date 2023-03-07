@@ -54,7 +54,7 @@ public class SensorController : MonoBehaviour
                 Debug.DrawRay(transform.position, playerTarget);
                 if (Physics.Raycast(transform.position, playerTarget, distanceToTarget, obstacleMask) == false)
                 {
-                    Debug.Log(distanceToTarget);
+                    //Debug.Log(distanceToTarget);
 
                     return true;
                 }
