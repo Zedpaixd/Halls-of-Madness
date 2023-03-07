@@ -13,11 +13,12 @@ public class Movement : MonoBehaviour
     CharacterController cc;
     PlayerSoundsController soundController;
     Vector2 mouseDelta, inputDir, mousePos, mousePosLastFrame;
-    Vector3 velocity, moveDir, camOrigPos;
+    Vector3 velocity,moveDir, camOrigPos;
     float xRot, yRot, moveSpeed, jumpSpeed, airAcceleration, cumulativeDistance, stepPhase, landTimer;
     public bool onGround;
     private bool canJumpForgiveness = false;
-    bool canJump, jumped, jumping, moving, landing, sprintPressed, sprinting;
+    bool canJump, jumped, jumping, landing, sprintPressed;
+    public bool moving, sprinting;
     int invertControls = 1;
     [SerializeField] LayerMask groundCheckLayerMask;
     float raycastOriginHeightMinus;
