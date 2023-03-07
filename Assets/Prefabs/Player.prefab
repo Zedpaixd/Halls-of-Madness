@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  knockbackSpeed: 0
+  knockbackSpeed: 60
   immuneTime: 0
   healthController: {fileID: 0}
 --- !u!1 &5429352558257906527

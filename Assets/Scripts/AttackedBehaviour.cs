@@ -13,9 +13,9 @@ public class AttackedBehaviour : MonoBehaviour
     {
         movement = this.GetComponent<Movement>();
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (!other.transform.tag.Equals("AttackLayer") || immune) { return; }
+        if (!other.transform.tag.Equals("Attack") || immune) { return; }
         StartCoroutine(Immunity());
         healthController.linearlyChangeHealth(-damage, 0.4f);
         movement.Attacked(other.transform.position, knockbackSpeed);

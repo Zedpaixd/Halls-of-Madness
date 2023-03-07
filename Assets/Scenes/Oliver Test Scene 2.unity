@@ -1648,7 +1648,7 @@ PrefabInstance:
       objectReference: {fileID: 427245644}
     - target: {fileID: 5086794492903961897, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: sanityValue
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5086794492903961897, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: blinkMaxTime
@@ -6673,6 +6673,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 877127677349187848, guid: 1d4be2f9e4176184a90d5e8a1d014463, type: 3}
+      propertyPath: m_TagString
+      value: Attack
+      objectReference: {fileID: 0}
     - target: {fileID: 5913243205855874679, guid: 1d4be2f9e4176184a90d5e8a1d014463, type: 3}
       propertyPath: m_Name
       value: PyramidalEntity
@@ -12180,7 +12184,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 82137438569232604, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
       propertyPath: damage
-      value: 15
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 82137438569232604, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
       propertyPath: immuneTime

@@ -119,7 +119,7 @@ public class EntityAI : MonoBehaviour
         if (attackCount <= 0)
         {
    /**/         playerSanity += 1;
-            Debug.Log("Ouch!");
+            //Debug.Log("Ouch!");
 
             attackCount = 1;
         }

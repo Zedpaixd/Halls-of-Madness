@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
     Vector3 velocity, moveDir, camOrigPos, knockbackVelocity;
     float xRot, yRot, moveSpeed, jumpSpeed, airAcceleration, cumulativeDistance, stepPhase, landTimer,
         knockbackTimer;
-    const float knockbackTime = 0.2f;
+    const float knockbackTime = 0.28f;
     public bool onGround;
     private bool canJumpForgiveness = false;
     bool canJump, jumped, jumping, moving, landing, sprintPressed, sprinting, inKnockback;
@@ -38,13 +38,13 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        Forces();
         MouseDelta();
         Initial();
         Rotate();
         Directional();
         Step();
         LandingAnimation();
+        Forces();
         MoveCC();
     }
 
@@ -221,6 +221,7 @@ public class Movement : MonoBehaviour
     }
     public void Attacked(Vector3 attackerPosition, float knockbackSpeed)
     {
+        print("Attacked");
         inKnockback = true;
         var posDiff = transform.position - attackerPosition;
         var knockbackDir = new Vector3(posDiff.x, 0, posDiff.z).normalized;
