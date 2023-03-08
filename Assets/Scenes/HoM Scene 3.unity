@@ -3965,7 +3965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 298482705}
   - component: {fileID: 298482706}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FloatingTrigger
   m_TagString: FloatingTrigger
   m_Icon: {fileID: 0}
@@ -22174,7 +22174,7 @@ GameObject:
   - component: {fileID: 1672817798}
   - component: {fileID: 1672817799}
   - component: {fileID: 1672817800}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FloatingTrigger
   m_TagString: FloatingTrigger
   m_Icon: {fileID: 0}
