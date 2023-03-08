@@ -1820,9 +1820,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be47fdfcd581c324483c5ffbb4971b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attentionClip: {fileID: 8300000, guid: 062e68e482c050e46b595acad26670b4, type: 3}
+  passiveClips:
+  - {fileID: 8300000, guid: bd80395fc098f124fa1a57280c6ac112, type: 3}
+  - {fileID: 8300000, guid: ef184c8b9443ff54db67008cae02bcdc, type: 3}
+  - {fileID: 8300000, guid: d2e94b8d859438d4e8fcc772395a1c33, type: 3}
+  - {fileID: 8300000, guid: ef2be506c4783c74083d22c0c88f23a9, type: 3}
+  angryClips:
+  - {fileID: 8300000, guid: 54382e1c44c0d364aa3726dfa4588c3a, type: 3}
+  - {fileID: 8300000, guid: de8ac4cc698c9cd46a4125e8dce62518, type: 3}
+  - {fileID: 8300000, guid: 6bf9a8fc825c0c84d81c72b080b0e86b, type: 3}
+  - {fileID: 8300000, guid: 54eb9dfe887003a4089c80f1f4f4e3c4, type: 3}
   attackClip: {fileID: 8300000, guid: d3ef482a3fed392408b2d4dcddced6d3, type: 3}
-  attention: 0
+  angry: 0
 --- !u!1 &5999696837042224570
 GameObject:
   m_ObjectHideFlags: 0

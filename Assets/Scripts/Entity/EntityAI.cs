@@ -86,7 +86,7 @@ public class EntityAI : MonoBehaviour
         sensorController.SwitchLightIntensity(true); 
         followPlayer.TargetPlayer();
 
-        soundController.PlayAttention();
+        soundController.Angry();
     }
 
     private void DesactivateEntity()
@@ -95,7 +95,7 @@ public class EntityAI : MonoBehaviour
         sensorController.SwitchLightIntensity(false);
         followPlayer.BackToStart();
         
-        soundController.attention = false;
+        soundController.Passive();
     }
 
     /*  void SanityCheck()
