@@ -60,8 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eced54df59599d409862064c945a527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fade: {fileID: 277724653860825891}
-  CG: {fileID: 0}
+  healthController: {fileID: 0}
 --- !u!65 &5424093464465409697
 BoxCollider:
   m_ObjectHideFlags: 0
