@@ -11279,7 +11279,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
@@ -11303,7 +11311,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 687778365}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2122329666}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
@@ -11327,11 +11343,23 @@ PrefabInstance:
       value: OnSprint
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: onZoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Movement, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Zoom, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607519646071360574, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1607519646071360575, guid: 10987a20fec1a7a48a8190e7593f5606, type: 3}
@@ -27695,6 +27723,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
+--- !u!114 &2122329666 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4546248967774819253, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
+  m_PrefabInstance: {fileID: 2122329665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92bcf0a3a23f13c4489a6d1e1ec1fc8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2124052873
 GameObject:
   m_ObjectHideFlags: 0
