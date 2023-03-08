@@ -281,10 +281,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2199a5cb5a207f44abfaadf18a09397e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  knockbackSpeed: 0
-  immuneTime: 0
+  damage: 0.2
+  knockbackSpeed: 60
+  immuneTime: 1
   healthController: {fileID: 0}
+  sanityController: {fileID: 0}
 --- !u!1 &5429352558257906527
 GameObject:
   m_ObjectHideFlags: 0
