@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     const float knockbackTime = 0.2f;
     public bool onGround;
     private bool canJumpForgiveness = false;
-    bool canJump, jumped, jumping, moving, landing, sprintPressed, sprinting, inKnockback;
+    public bool canJump, jumped, jumping, moving, landing, sprintPressed, sprinting, inKnockback;
     int invertControls = 1;
     [SerializeField] LayerMask groundCheckLayerMask;
     float raycastOriginHeightMinus;
