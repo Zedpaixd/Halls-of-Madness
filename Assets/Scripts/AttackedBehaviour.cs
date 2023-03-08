@@ -4,28 +4,26 @@ using UnityEngine;
 
 public class AttackedBehaviour : MonoBehaviour
 {
+    public float damage, knockbackSpeed, immuneTime;
     [SerializeField] private HealthController healthController;
     private bool immune = false;
     private Movement movement;
 
     private void Start()
     {
-        movement = this.GetComponent<Movement>();    
+        movement = this.GetComponent<Movement>();
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag.Equals("AttackLayer") && !immune)
-        {
-            immune = true;
-            healthController.linearlyChangeHealth(-0.15f, 1);
-            StartCoroutine(immuneTime());
-            movement.Attacked();
-        }
+        if (!other.transform.tag.Equals("AttackLayer") || immune) { return; }
+        StartCoroutine(Immunity());
+        healthController.linearlyChangeHealth(-damage, 0.4f);
+        movement.Attacked(other.transform.position, knockbackSpeed);
     }
-
-    private IEnumerator immuneTime()
+    IEnumerator Immunity()
     {
-        yield return new WaitForSeconds(1);
+        immune = true;
+        yield return new WaitForSeconds(immuneTime);
         immune = false;
     }
 }

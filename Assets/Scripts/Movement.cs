@@ -12,13 +12,14 @@ public class Movement : MonoBehaviour
     Transform cam;
     CharacterController cc;
     PlayerSoundsController soundController;
-    Vector2 mouseDelta, inputDir, mousePos, mousePosLastFrame;
-    Vector3 velocity,moveDir, camOrigPos;
-    float xRot, yRot, moveSpeed, jumpSpeed, airAcceleration, cumulativeDistance, stepPhase, landTimer;
+    Vector2 mouseDelta, inputDir;
+    Vector3 velocity, moveDir, camOrigPos, knockbackVelocity;
+    float xRot, yRot, moveSpeed, jumpSpeed, airAcceleration, cumulativeDistance, stepPhase, landTimer,
+        knockbackTimer;
+    const float knockbackTime = 0.2f;
     public bool onGround;
     private bool canJumpForgiveness = false;
-    bool canJump, jumped, jumping, landing, sprintPressed;
-    public bool moving, sprinting;
+    bool canJump, jumped, jumping, moving, landing, sprintPressed, sprinting, inKnockback;
     int invertControls = 1;
     [SerializeField] LayerMask groundCheckLayerMask;
     float raycastOriginHeightMinus;
@@ -59,6 +60,7 @@ public class Movement : MonoBehaviour
     }
     void Forces()
     {
+        //Gravity
         if (!onGround)
         {
             velocity.y -= gravity * Time.deltaTime;
@@ -67,8 +69,18 @@ public class Movement : MonoBehaviour
         {
             velocity.y = 0f;
         }
-    }
 
+        //Knockback
+        if (inKnockback)
+        {
+            velocity += knockbackVelocity * (knockbackTimer/knockbackTime);
+            knockbackTimer -= Time.deltaTime;
+            if (knockbackTimer <= 0)
+            {
+                inKnockback = false;
+            }
+        }
+    }
     void Initial()
     {
         //Move
@@ -92,30 +104,20 @@ public class Movement : MonoBehaviour
             LandJump();
         }
         airAcceleration = baseAirAcceleration * (sprinting ? sprintMultiplier/2f : 1f);
-
     }
-
     void MouseDelta()
     {
         mouseDelta = PauseGame.paused ? Vector2.zero : new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
     }
-   
     public void OnMove(InputAction.CallbackContext ctx)
     {
         inputDir = ctx.ReadValue<Vector2>();
         moving = inputDir.magnitude > 0.1f;
     }
-
-    public void Attacked()
-    {
-        // Oliver add a small knockback here
-    }
-
     public void OnSprint(InputAction.CallbackContext ctx)
     {
         sprintPressed = ctx.performed;
     }
-   
     public void OnJump(InputAction.CallbackContext ctx)
     {
         if (!(ctx.performed && (canJump || canJumpForgiveness)) || PauseGame.paused) { return; }
@@ -128,7 +130,6 @@ public class Movement : MonoBehaviour
         stepPhase = stepDistance/2f;
         cam.localPosition = camOrigPos;
     }
-
     void Rotate()
     {
         yRot += mouseDelta.x * mouseSensitivity * invertControls;
@@ -138,7 +139,6 @@ public class Movement : MonoBehaviour
         transform.eulerAngles = new Vector3(0f, yRot, 0f);
         cam.localEulerAngles = new Vector3(-xRot, 0f, 0f);
     }
-
     void Directional()
     {
         moveDir = Vector3.Cross(transform.right, Vector3.up) * inputDir.y + transform.right * inputDir.x;
@@ -169,7 +169,6 @@ public class Movement : MonoBehaviour
             }
         }
     }
-
     void Step()
     {
         //Head bobbing camera effect
@@ -198,14 +197,12 @@ public class Movement : MonoBehaviour
             soundController.PlayStep();
         }
     }
-
     void LandJump()
     {
         soundController.PlayLandJump();
         landing = true;
         landTimer = landTime;
     }
-
     void LandingAnimation()
     {
         if (!landing) { return; }
@@ -218,12 +215,18 @@ public class Movement : MonoBehaviour
         cam.localPosition = camOrigPos + Vector3.down * landingShakePosAmp * Mathf.Sin(Mathf.PI * landTimer / landTime);
         
     }
-
     void MoveCC()
     {
         cc.Move(velocity * Time.deltaTime);    
     }
-
+    public void Attacked(Vector3 attackerPosition, float knockbackSpeed)
+    {
+        inKnockback = true;
+        var posDiff = transform.position - attackerPosition;
+        var knockbackDir = new Vector3(posDiff.x, 0, posDiff.z).normalized;
+        knockbackVelocity = knockbackDir * knockbackSpeed;
+        knockbackTimer = knockbackTime;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Pickupable" || collision.transform.tag == "SpPickupable")
@@ -243,7 +246,6 @@ public class Movement : MonoBehaviour
             onGround = false;
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("InvertControls")){
