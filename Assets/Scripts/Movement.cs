@@ -38,13 +38,13 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        Forces();
         MouseDelta();
         Initial();
         Rotate();
         Directional();
         Step();
         LandingAnimation();
+        Forces();
         MoveCC();
     }
 

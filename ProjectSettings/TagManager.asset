@@ -13,6 +13,8 @@ TagManager:
   - FloatingTrigger
   - SpPickupable
   - AttackLayer
+  - SanityRecovery
+  - AttackSpot
   layers:
   - Default
   - TransparentFX

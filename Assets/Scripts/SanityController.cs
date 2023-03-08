@@ -10,15 +10,17 @@ public class SanityController : MonoBehaviour
     private Slider sSlider;
     [SerializeField] private Fade fade;
     public float sanityValue;
-    private bool CR_running = false;
+    private bool CR_running = false, sCR_running = false;
     [SerializeField] private float blinkMinTime;
     [SerializeField] private float blinkMaxTime;
+    [SerializeField] private HealthController healthController;
     #endregion
 
     void Start()
     {
         sSlider = GetComponent<Slider>();
         sanityValue = sSlider.value;
+        StartCoroutine(GoingInsane());
     }
 
     void Update()
@@ -45,6 +47,7 @@ public class SanityController : MonoBehaviour
     {
         if (amount < 0 && amount > sanityValue) amount = sanityValue;
         else if (amount > 0 && amount + sanityValue > 1) amount = 1.001f - sanityValue;
+
         StartCoroutine(ChangeSanity(amount, durationInSeconds));
     }
 
@@ -77,8 +80,9 @@ public class SanityController : MonoBehaviour
         }
 
         // 0
-        if (sanityValue <= 0.0001f)
+        if (sanityValue <= 0.001f)
         {
+            healthController.linearlyChangeHealth(-1, 1);
         }
     }
 
@@ -100,6 +104,7 @@ public class SanityController : MonoBehaviour
 
     private IEnumerator ChangeSanity(float amount, float durationInSeconds)
     {
+        sCR_running = true;
         float destination = sanityValue + amount;
         float originalVal = sanityValue;
 
@@ -109,6 +114,16 @@ public class SanityController : MonoBehaviour
             yield return null;
         }
         sanityValue = destination;
+        sCR_running = false;
+    }
+
+    private IEnumerator GoingInsane()
+    {
+        while (sanityValue > 0f)
+        {
+            instantlyChangeSanity(sanityValue - 0.006f);
+            yield return new WaitForSeconds(2);
+        }
     }
 
     /* DELAY ADDER */
