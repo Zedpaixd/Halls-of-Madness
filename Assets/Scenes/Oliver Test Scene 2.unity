@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -920,17 +920,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4534449285516404, guid: 0941535f5a7c0d846a45a6370dc4036b, type: 3}
   m_PrefabInstance: {fileID: 1739864096}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &210232509 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8735470084521435906, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
-  m_PrefabInstance: {fileID: 314712848}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b2d8283f3f12584b897da019fd0e10b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &229853436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,6 +1623,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4609825310375901206, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4609825310375901206, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5086794492081879736, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1661,6 +1658,14 @@ PrefabInstance:
     - target: {fileID: 5086794492903961899, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8650485141528496479, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8650485141528496479, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8735470083068902298, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1713,7 +1718,7 @@ PrefabInstance:
     - target: {fileID: 8735470084521435906, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: sController
       value: 
-      objectReference: {fileID: 479390021}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
 --- !u!1 &331164847 stripped
@@ -2450,17 +2455,6 @@ Transform:
   m_Father: {fileID: 1145350704}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &479390021 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5086794492903961897, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
-  m_PrefabInstance: {fileID: 314712848}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6952fc916f25f5b4e81101bcd796cfa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &486503579 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4350637049652996, guid: ac1d6bc633cb75f43b455f34daf7fd73, type: 3}
@@ -12193,7 +12187,7 @@ PrefabInstance:
     - target: {fileID: 82137438569232604, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
       propertyPath: healthController
       value: 
-      objectReference: {fileID: 210232509}
+      objectReference: {fileID: 0}
     - target: {fileID: 293597033524959990, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
       propertyPath: m_Layer
       value: 11
@@ -12624,7 +12618,7 @@ PrefabInstance:
     - target: {fileID: 277724652706017454, guid: 6ea7f2692869fd54297456e401ce3d94, type: 3}
       propertyPath: healthController
       value: 
-      objectReference: {fileID: 210232509}
+      objectReference: {fileID: 0}
     - target: {fileID: 277724652706017455, guid: 6ea7f2692869fd54297456e401ce3d94, type: 3}
       propertyPath: m_Name
       value: Fail Zone
