@@ -7332,7 +7332,7 @@ PrefabInstance:
     - target: {fileID: 277724652706017454, guid: 6ea7f2692869fd54297456e401ce3d94, type: 3}
       propertyPath: healthController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 506220095}
     - target: {fileID: 277724652706017455, guid: 6ea7f2692869fd54297456e401ce3d94, type: 3}
       propertyPath: m_Name
       value: Fail Zone (1)
@@ -25862,7 +25862,7 @@ PrefabInstance:
     - target: {fileID: 277724652706017454, guid: 6ea7f2692869fd54297456e401ce3d94, type: 3}
       propertyPath: healthController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 506220095}
     - target: {fileID: 277724652706017455, guid: 6ea7f2692869fd54297456e401ce3d94, type: 3}
       propertyPath: m_Name
       value: Fail Zone
