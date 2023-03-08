@@ -17,6 +17,8 @@ public class PickUp : MonoBehaviour
     [SerializeField] int LayerMask;
 
     HeldItem childS = null;
+
+    [SerializeField] private GameObject hint;
     
 
     private void Update()
@@ -65,6 +67,7 @@ public class PickUp : MonoBehaviour
     {
         if (pickedObject.GetComponent<Rigidbody>())
         {
+            if (hint && hint.activeSelf) Destroy(hint);
             heldObjectRB = pickedObject.GetComponent<Rigidbody>();
             heldObjectRB.useGravity = false;
             heldObjectRB.drag = 10;
@@ -102,5 +105,18 @@ public class PickUp : MonoBehaviour
     {
         childS = null;
     }
+
+    public void setHint(bool value)
+    {
+        if (hint) hint.SetActive(value);
+    }
+
+    public bool getHint()
+    {
+        if (hint) return hint.activeSelf;
+        else return false;
+    }
+
+    
 
 }

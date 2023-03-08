@@ -15,6 +15,7 @@ TagManager:
   - AttackLayer
   - SanityRecovery
   - AttackSpot
+  - PickupHint
   layers:
   - Default
   - TransparentFX
