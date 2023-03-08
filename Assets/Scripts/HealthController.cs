@@ -22,7 +22,7 @@ public class HealthController : MonoBehaviour
     {
         hSlider = GetComponent<Slider>();
         healthValue = hSlider.value;
-        CG = this.GetComponentInChildren<CanvasGroup>();
+    //    CG = this.GetComponentInChildren<CanvasGroup>();
     }
 
     void Update()

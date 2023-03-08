@@ -26,44 +26,31 @@ public class EntityAI : MonoBehaviour
     [SerializeField]
     private SensorController sensorController;
     [SerializeField]
-    private Transform attentionSource;
-    [SerializeField]
     private FollowPlayer followPlayer;
     [SerializeField]
     private float rotationSpeed = 2f;
 
-    #region Attack Rate
-    [Header("Attack Rate")]
-    public float attackRate = 2;
-    private float attackCount;
-    #endregion
-
-    //temporary
-    [Header("TEMPORARY")]
-    public float playerSanity = 0;
-
+    public EntitySoundController soundController;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         sensorController.viewRadius = viewRanges[currentState];
         followPlayer = this.GetComponent<FollowPlayer>();
+        soundController = this.GetComponent<EntitySoundController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SanityCheck();
+     //   SanityCheck();
 
         if (sensorController.View())
         {
             if (!isAlerted)
             {
-                isAlerted = true;
-                sensorController.SwitchLightIntensity(true);
+                ActiveEntity();
             }
-            attentionSource = player.transform;
-            followPlayer.target = player.transform;
 
             if (followPlayer.CanMove())
             {
@@ -75,10 +62,7 @@ public class EntityAI : MonoBehaviour
         {
             if (!isAlerted)
             {
-                isAlerted = true;
-                sensorController.SwitchLightIntensity(true);
-                attentionSource.position = player.transform.position;
-                followPlayer.target = attentionSource;
+                ActiveEntity();
             }
 
             if (followPlayer.CanMove())
@@ -91,84 +75,74 @@ public class EntityAI : MonoBehaviour
         {
             if (isAlerted)
             {
-                sensorController.SwitchLightIntensity(false);
-    //            attentionSource = this.transform;
-                isAlerted = false;
+                DesactivateEntity();
             }
         }
+    }
+
+    private void ActiveEntity()
+    {
+        isAlerted = true;
+        sensorController.SwitchLightIntensity(true); 
+        followPlayer.TargetPlayer();
+
+        soundController.PlayAttention();
+    }
+
+    private void DesactivateEntity()
+    {
+        isAlerted = false;
+        sensorController.SwitchLightIntensity(false);
+        followPlayer.BackToStart();
         
-
-        if (attackCount > 0)
-        {
-            attackCount -= Time.deltaTime * attackRate;
-        }
+        soundController.attention = false;
     }
 
-   
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.transform.CompareTag("Player"))
-        {
-            Attack();
-        }
-    }
-
-    void Attack()
-    {
-        if (attackCount <= 0)
-        {
-   /**/         playerSanity += 1;
-            Debug.Log("Ouch!");
-
-            attackCount = 1;
-        }
-    }
-
-  /**/  void SanityCheck()
-    {
-        if (playerSanity <= sanityStateMax[state0])
-        {
-            if (currentState != state0)
-            {
-                ChangeState(state0);
-            }  
-        }
-        else if (playerSanity > sanityStateMax[state0] && playerSanity <= sanityStateMax[state1])
-        {
-            if (currentState != state1)
-            {
-                ChangeState(state1);
-            }
-        }
-        else if (playerSanity > sanityStateMax[state1] && playerSanity <= sanityStateMax[state2])
-        {
-            if (currentState != state2)
-            {
-                ChangeState(state2);
-            }
-        }
-        else if (playerSanity > sanityStateMax[state2] && playerSanity <= sanityStateMax[state3])
-        {
-            if (currentState != state3)
-            {
-                ChangeState(state3);
-            }
-        }
-        else
-        {
-            if (currentState != state4)
-            {
-                ChangeState(state4);
-            }
-        }
-    }
-
-    void ChangeState(int newState)
+    /*  void SanityCheck()
+      {
+          if (playerSanity <= sanityStateMax[state0])
+          {
+              if (currentState != state0)
+              {
+                  ChangeState(state0);
+              }  
+          }
+          else if (playerSanity > sanityStateMax[state0] && playerSanity <= sanityStateMax[state1])
+          {
+              if (currentState != state1)
+              {
+                  ChangeState(state1);
+              }
+          }
+          else if (playerSanity > sanityStateMax[state1] && playerSanity <= sanityStateMax[state2])
+          {
+              if (currentState != state2)
+              {
+                  ChangeState(state2);
+              }
+          }
+          else if (playerSanity > sanityStateMax[state2] && playerSanity <= sanityStateMax[state3])
+          {
+              if (currentState != state3)
+              {
+                  ChangeState(state3);
+              }
+          }
+          else
+          {
+              if (currentState != state4)
+              {
+                  ChangeState(state4);
+              }
+          }
+      }
+  */
+   /* void ChangeState(int newState)
     {
         currentState = newState;
 
         sensorController.viewRadius = viewRanges[currentState];
         followPlayer.chaseSpeed = chaseSpeeds[currentState];
     }
+   */
 }
