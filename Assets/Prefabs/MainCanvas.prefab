@@ -1703,7 +1703,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Main Menu
+  m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3a7eaf0208e184049ad1a302dbfcd939, type: 2}
   m_sharedMaterial: {fileID: 8422058087784857819, guid: 3a7eaf0208e184049ad1a302dbfcd939, type: 2}
@@ -1785,7 +1785,7 @@ GameObject:
   - component: {fileID: 1472462409163970374}
   - component: {fileID: 1472462409163970373}
   m_Layer: 5
-  m_Name: MainMenuButton
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7152,11 +7152,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5086794491965557301, guid: 488df8f2745536043a9b20ab818cdbcc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 199.79211
+      value: 301.602
       objectReference: {fileID: 0}
     - target: {fileID: 5086794491965557301, guid: 488df8f2745536043a9b20ab818cdbcc, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30.64972
+      value: 131.881
       objectReference: {fileID: 0}
     - target: {fileID: 5086794491965557301, guid: 488df8f2745536043a9b20ab818cdbcc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7188,11 +7188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5086794491965557301, guid: 488df8f2745536043a9b20ab818cdbcc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 122
+      value: 174.905
       objectReference: {fileID: 0}
     - target: {fileID: 5086794491965557301, guid: 488df8f2745536043a9b20ab818cdbcc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -71.599976
+      value: -157
       objectReference: {fileID: 0}
     - target: {fileID: 5086794491965557301, guid: 488df8f2745536043a9b20ab818cdbcc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7373,19 +7373,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8735470084548147076, guid: d4c8f5773a5d4fa459c83ee3e0efed2f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 199.79211
+      value: 301.602
       objectReference: {fileID: 0}
     - target: {fileID: 8735470084548147076, guid: d4c8f5773a5d4fa459c83ee3e0efed2f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30.64972
+      value: 131.881
       objectReference: {fileID: 0}
     - target: {fileID: 8735470084548147076, guid: d4c8f5773a5d4fa459c83ee3e0efed2f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 124
+      value: 174.905
       objectReference: {fileID: 0}
     - target: {fileID: 8735470084548147076, guid: d4c8f5773a5d4fa459c83ee3e0efed2f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -26
+      value: -76.616
       objectReference: {fileID: 0}
     - target: {fileID: 8735470084857870419, guid: d4c8f5773a5d4fa459c83ee3e0efed2f, type: 3}
       propertyPath: m_AnchorMax.x
