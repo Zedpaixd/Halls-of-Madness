@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -49,6 +50,10 @@ public class Movement : MonoBehaviour
         LandingAnimation();
         Forces();
         MoveCC();
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 >= 4 ? SceneManager.GetActiveScene().buildIndex : SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     void FixedUpdate()
