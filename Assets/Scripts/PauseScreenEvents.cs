@@ -24,7 +24,6 @@ public class PauseScreenEvents : MonoBehaviour
     }
     public static void ExitToDesktop()
     {
-        print("You have exited to Desktop");
-        //Application.Quit();
+        Application.Quit();
     }
 }
