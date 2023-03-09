@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,11 +25,13 @@ public class Movement : MonoBehaviour
     [SerializeField] LayerMask groundCheckLayerMask;
     float raycastOriginHeightMinus;
     RaycastHit hit;
+    [SerializeField] private PickUp pickup;
 
     void Start() 
     {
         Cursor.lockState = CursorLockMode.Locked;
         cam = transform.GetChild(0);
+        pickup = cam.GetComponent<PickUp>();
         cc = GetComponent<CharacterController>();
         raycastOriginHeightMinus = transform.localScale.y - groundCheckStartHeight;
         soundController = GetComponent<PlayerSoundsController>();
@@ -254,6 +257,18 @@ public class Movement : MonoBehaviour
         if (other.gameObject.CompareTag("ResetControls"))
         {
             invertControls = 1;
+        }
+        if (other.transform.tag.Equals("PickupHint"))
+        {
+            pickup.setHint(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag.Equals("PickupHint") && pickup.getHint())
+        {
+            pickup.setHint(false);
         }
     }
 }
