@@ -9,11 +9,10 @@ public class ChangeSettings : MonoBehaviour
     public PostProcessLayer layer;
     AutoExposure exposure;
     public AudioSource playerAudioSource;
-    AudioSource bcNoise;
+    public AudioSource bcNoise;
     private void Start()
     {
         brightness.TryGetSettings(out exposure);
-        bcNoise = GameObject.Find("Background Noise").GetComponent<AudioSource>();
     }
     public void SetMasterVolume(float value)
     {
