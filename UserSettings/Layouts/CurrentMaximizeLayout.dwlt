@@ -188,8 +188,8 @@ MonoBehaviour:
     y: 0
     width: 212.8
     height: 544
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -226,9 +226,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: bced0300
-      m_LastClickedID: 257468
-      m_ExpandedIDs: d87cfdffea8bfdff789efdfff4a8fdff38bcfdff84bcfdff50c9fdff70d1fdff10dcfdff44dcfdfff4dcfdff88ddfdffc644feffe647feffec47fefff44afeff604cfeffe256feff9c78feff66f5ffff6cf5ffff7ef5ffff8cf5ffff7ef7ffff9ef9ffffb0f9ffffc2f9ffffd4f9ffffe0f9ffffeaf9fffffcf9ffff0efaffff20faffff24faffff2afaffff4efaffffeafaffffbc6f0000ce6f00000c720000e67300001a740000b07500005c0e03007c0e0300f8120300e81403008aee0300aaee0300
+      m_SelectedIDs: 98a0ffff
+      m_LastClickedID: -24424
+      m_ExpandedIDs: 98a0ffff58eaffffd6f4fffff8f8ffffeafaffff7c740000dc740000e8750000e47700000a780000e8780000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -244,7 +244,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 5}
+        m_ClientGUIView: {fileID: 7}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -334,7 +334,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
@@ -356,7 +356,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
@@ -537,9 +537,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 149.65936, y: 201.30733, z: 89.512634}
+    m_Target: {x: -50.85936, y: -17.324596, z: 37.40134}
     speed: 2
-    m_Value: {x: 149.65936, y: 201.30733, z: 89.512634}
+    m_Value: {x: -50.85936, y: -17.324596, z: 37.40134}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -586,13 +586,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.02467226, y: 0.27574572, z: 0.009773842, w: 0.96142596}
+    m_Target: {x: -0.1260383, y: 0.33569127, z: -0.048334017, w: -0.93282974}
     speed: 2
-    m_Value: {x: -0.02465895, y: 0.27559695, z: 0.009768569, w: 0.9609073}
+    m_Value: {x: -0.12597018, y: 0.33550987, z: -0.048307896, w: -0.9323256}
   m_Size:
-    m_Target: 38.489635
+    m_Target: 39.302437
     speed: 2
-    m_Value: 38.489635
+    m_Value: 39.302437
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -685,22 +685,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\kimij\OneDrive\Desktop\Halls Of Madness\Halls-of-Madness
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 637.19904}
-    m_SelectedIDs: 20830000
-    m_LastClickedID: 33568
-    m_ExpandedIDs: 00000000d2820000d4820000d6820000d8820000da820000dc820000de820000e082000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 830.50275}
+    m_SelectedIDs: a2730000
+    m_LastClickedID: 29602
+    m_ExpandedIDs: 00000000487300004a7300004c7300004e730000507300005273000054730000567300007473000010740000bc84000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -728,7 +728,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d2820000d4820000d6820000d8820000da820000dc820000de820000e082000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000487300004a7300004c7300004e73000050730000527300005473000056730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -753,8 +753,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: bced0300
-    m_LastClickedInstanceID: 257468
+    m_SelectedInstanceIDs: 98a0ffff
+    m_LastClickedInstanceID: -24424
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -780,7 +780,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 88.20001}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
@@ -831,8 +831,8 @@ MonoBehaviour:
     y: 0
     width: 394.40002
     height: 730.8
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
