@@ -140,6 +140,7 @@ MonoBehaviour:
   groundCheckLayerMask:
     serializedVersion: 2
     m_Bits: 2299
+  pickup: {fileID: 0}
 --- !u!114 &4375933780555438161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,8 +283,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.2
-  knockbackSpeed: 60
+  knockbackSpeed: 4
   immuneTime: 1
+  launchAngle: 45
   healthController: {fileID: 0}
   sanityController: {fileID: 0}
 --- !u!1 &5429352558257906527
@@ -391,6 +393,7 @@ MonoBehaviour:
   pickupForce: 200
   pickupRange: 5
   LayerMask: 7
+  hint: {fileID: 0}
 --- !u!114 &93193661224255453
 MonoBehaviour:
   m_ObjectHideFlags: 0

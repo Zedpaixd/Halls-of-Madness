@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackedBehaviour : MonoBehaviour
 {
-    public float damage, knockbackSpeed, immuneTime;
+    public float damage, knockbackSpeed, immuneTime, launchAngle;
     [SerializeField] private HealthController healthController;
     [SerializeField] private SanityController sanityController;
     private bool immune = false;
@@ -14,14 +14,17 @@ public class AttackedBehaviour : MonoBehaviour
     {
         movement = this.GetComponent<Movement>();
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.transform.tag.Equals("AttackSpot") && !immune)
         {
             StartCoroutine(Immunity());
             healthController.linearlyChangeHealth(-damage, 0.4f);
-            movement.Attacked(other.transform.position, knockbackSpeed);
+            movement.Attacked(other.transform.position, knockbackSpeed, launchAngle);
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.transform.tag.Equals("SanityRecovery"))
         {
             sanityController.linearlyChangeSanity(0.33f, 3);

@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
     Vector3 velocity, moveDir, camOrigPos, knockbackVelocity;
     float xRot, yRot, moveSpeed, jumpSpeed, airAcceleration, cumulativeDistance, stepPhase, landTimer,
         knockbackTimer;
-    const float knockbackTime = 0.2f;
+    const float knockbackTime = 0.2f, knockbackY = 1f;
     public bool onGround;
     private bool canJumpForgiveness = false;
     public bool canJump, jumped, jumping, moving, landing, sprintPressed, sprinting, inKnockback;
@@ -151,6 +151,7 @@ public class Movement : MonoBehaviour
     {
         moveDir = Vector3.Cross(transform.right, Vector3.up) * inputDir.y + transform.right * inputDir.x;
         var move2 = new Vector2(moveDir.x, moveDir.z) * moveSpeed * invertControls;
+        if (inKnockback) return;
         if (onGround)
         {
             var moveMagTime = move2.magnitude * Time.deltaTime;
@@ -227,11 +228,12 @@ public class Movement : MonoBehaviour
     {
         cc.Move(velocity * Time.deltaTime);    
     }
-    public void Attacked(Vector3 attackerPosition, float knockbackSpeed)
+    public void Attacked(Vector3 attackerPosition, float knockbackSpeed, float launchAngle)
     {
         inKnockback = true;
         var posDiff = transform.position - attackerPosition;
-        var knockbackDir = new Vector3(posDiff.x, 0, posDiff.z).normalized;
+        var knockbackDir = new Vector3(posDiff.x, 0, posDiff.z).normalized*Mathf.Cos(Mathf.Deg2Rad * launchAngle);
+        velocity.y = Mathf.Sin(Mathf.Deg2Rad * launchAngle)*knockbackSpeed;
         knockbackVelocity = knockbackDir * knockbackSpeed;
         knockbackTimer = knockbackTime;
     }
@@ -268,7 +270,6 @@ public class Movement : MonoBehaviour
             pickup.setHint(true);
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.tag.Equals("PickupHint") && pickup.getHint())
