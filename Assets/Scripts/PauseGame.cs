@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
@@ -42,5 +43,11 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         pauseScreen.SetActive(false);
+    }
+    public static void MainMenu()
+    {
+        paused = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Main Menu");
     }
 }

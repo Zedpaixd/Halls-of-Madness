@@ -8506,6 +8506,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5619372161872954421, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
+      propertyPath: bcNoise
+      value: 
+      objectReference: {fileID: 857045436}
+    - target: {fileID: 5619372161872954421, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
+      propertyPath: playerAudioSource
+      value: 
+      objectReference: {fileID: 1646275175}
     - target: {fileID: 5984768259649296571, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: bcNoise
       value: 
@@ -25296,6 +25304,11 @@ MeshFilter:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4290439104894856, guid: f5a1bb1bf8641274c88db4c73f943ae4, type: 3}
   m_PrefabInstance: {fileID: 62547631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1646275175 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 746435255198129899, guid: b6b97d7d4210e1543a74e39be87fd3c7, type: 3}
+  m_PrefabInstance: {fileID: 2122329665}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1652927493
 PrefabInstance:

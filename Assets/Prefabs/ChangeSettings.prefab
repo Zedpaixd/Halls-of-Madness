@@ -46,3 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brightness: {fileID: 11400000, guid: 72725f648a1440645bb0d6aeb449032b, type: 2}
   layer: {fileID: 0}
+  isMainScene: 0
+  bcNoiseRelativeVol: 0.4
+  playerAudioRelativeVol: 1
+  playerAudioSource: {fileID: 0}
+  bcNoise: {fileID: 0}

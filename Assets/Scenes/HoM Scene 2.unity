@@ -2740,6 +2740,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5619372161872954421, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
+      propertyPath: bcNoise
+      value: 
+      objectReference: {fileID: 1756028173}
+    - target: {fileID: 5619372161872954421, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
+      propertyPath: playerAudioSource
+      value: 
+      objectReference: {fileID: 1346917360}
     - target: {fileID: 5984768259649296571, guid: e23cde28aad615340873ec17835b0a0d, type: 3}
       propertyPath: layer
       value: 
