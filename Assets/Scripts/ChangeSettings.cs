@@ -1,21 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class ChangeSettings : MonoBehaviour
 {
-    public PostProcessProfile brightness;
-    public PostProcessLayer layer;
+    public Volume brightnessVolume;
+    ColorAdjustments colorAdj;
+
     public bool isMainScene;
-    public float bcNoiseRelativeVol = 0.4f, playerAudioRelativeVol = 1f;
-    AutoExposure exposure;
+    public float bcNoiseRelativeVol = 0.2f, playerAudioRelativeVol = 0.5f, entityRelativeVol = 1f;
     public AudioSource playerAudioSource;
+    AudioSource[] entityAudioSources;
     public AudioSource bcNoise;
     private void Start()
     {
-        brightness.TryGetSettings(out exposure);
+        var entities = GameObject.FindGameObjectsWithTag("Entity");
+        entityAudioSources = new AudioSource[entities.Length];
+        for (int i = 0; i < entities.Length; i++)
+        {
+            entityAudioSources[i] = entities[i].GetComponent<AudioSource>();
+        }
+        brightnessVolume.profile.TryGet(out colorAdj);
         ApplyAllSettings();
     }
     public void ApplyAllSettings()
@@ -23,9 +31,13 @@ public class ChangeSettings : MonoBehaviour
         if (!isMainScene)
         {
             playerAudioSource.volume = playerAudioRelativeVol * Settings.masterVolume * Settings.sfxVolume;
+            foreach (AudioSource audioSource in entityAudioSources)
+            {
+                audioSource.volume = entityRelativeVol * Settings.masterVolume * Settings.sfxVolume;
+            }
         }
         bcNoise.volume = bcNoiseRelativeVol * Settings.masterVolume * Settings.ambienceVolume;
-        exposure.keyValue.value = 0.1f * Mathf.Pow(100, Settings.brightness);
+        colorAdj.postExposure.Override(-3 + 6 * Settings.brightness);
     }
     public void SetMasterVolume(float value)
     {
@@ -43,6 +55,10 @@ public class ChangeSettings : MonoBehaviour
         if (!isMainScene)
         {
             playerAudioSource.volume = playerAudioRelativeVol * value * Settings.masterVolume;
+            foreach (AudioSource audioSource in entityAudioSources)
+            {
+                audioSource.volume = entityRelativeVol * Settings.masterVolume * Settings.sfxVolume;
+            }
         }
     }
     public void SetAmbianceVolume(float value)
@@ -53,6 +69,6 @@ public class ChangeSettings : MonoBehaviour
     public void SetBrightness(float value)
     {
         Settings.brightness = value;
-        exposure.keyValue.value = 0.1f*Mathf.Pow(100,value);
+        colorAdj.postExposure.Override(-3+6*value);
     }
 }
