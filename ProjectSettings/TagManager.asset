@@ -30,7 +30,7 @@ TagManager:
   - Trigger
   - PlayerModel
   - PostProcess
-  - 
+  - GlitchEffect
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: GlitchEffectSortingLayer
+    uniqueID: 3391023465
     locked: 0
