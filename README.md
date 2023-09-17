@@ -7,8 +7,8 @@ Halls of Madness is a proof-of-concept, open-source horror puzzle game that enga
 
 ## Features
 - Alternate Realities: The game allows players to traverse different dimensions, each with their unique set of challenges and landscapes.
-- Complex Puzzles: Players will encounter a series of complicated puzzles that must be solved to advance through the game.
-- Unique Monsters: The game features an array of distinct monsters, each requiring different strategies to overcome.
+- Complex Puzzles: Players will encounter a series of mind-bending complicated puzzles that must be solved to advance through the game.
+- Unique Monsters: The game features a unique concept of monster that exists for the sole purpose for hunting you during your alternate visions.
 
 ## Acknowledgments
 Special thanks to the ICT Showroom judges for recognizing the game's innovative design and to all contributors who have helped to bring this project to life.
