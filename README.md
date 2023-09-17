@@ -13,4 +13,6 @@ Halls of Madness is a proof-of-concept, open-source horror puzzle game that enga
 ## Acknowledgments
 Special thanks to the ICT Showroom judges for recognizing the game's innovative design and to all contributors who have helped to bring this project to life.
 
+-----------
+
 For further queries, please reach out.
